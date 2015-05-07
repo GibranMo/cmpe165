@@ -27,45 +27,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>
-            function checkinfo() {
-                alert("first one ");
-                var name = document.getElementById("username").value;
-                var email = document.getElementById("email").value;
-                var username = document.getElementById("username").value;
-                var pass1 = document.getElementById("password1").value;
-                var pass2 = document.getElementById("password2").value;
-                alert("asdsadsadsadsad");
-                if(name === "" || email === "" || username === "" || pass1 === "" || pass2 === "")
-                {
-                    alert("You left one or more fields empty. Please fill out everything.");
-                    
-                    //DO ANOTHER ELSEIF AND CHECK USERNAME AGAINST THE DB AFTER THIS ONE
-                }else if(pass1 !== pass2)
-                {
-                    alert("Your passwords are not matching. Fix that!");
-                }else
-                {
-
-                        $.ajax({
-                            type: "POST",
-                            url: "signup.php",
-                            data: "name=" + name + "&email=" + email + "&username=" + username + "&password=" + pass1,
-                            cache: false,
-                            success: function (data) {
-                                if (data == 0) {
-                                    alert("Successful Registration!!!");
-
-                                }
-                                else {
-                                    alert('db crashed bro');
-                                }
-                            }
-                        });   
-                }
-            }
-        </script>
-    
 </head>
 
 <body>
