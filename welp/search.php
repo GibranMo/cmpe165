@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>About - Welp</title>
+    <title>Search - Welp</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -47,19 +47,19 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Business Casual</a>
+                <a class="navbar-brand" href="index.php">Business Casual</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="about.php">About</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a href="contact.php">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -83,9 +83,47 @@
                     <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
                 </div>
                 <div class="col-md-6">
-                    <p>This is a great place to introduce your company or project and describe what you do.</p>
-                    <p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                  <p>
+                   Search restaurants near:  
+                   <select>
+                        <option value="" selected disabled> <strong>Please select</strong></option>
+                        <option value="">San Jose, CA</option>
+                        <option value="">San Francisco, CA</option>
+                        <option value="">Fremont, CA</option>
+                        <option value="">Santa Clara, CA</option>
+                        <option value="">Sunnyvale, CA</option>
+                        <option value="">Stockton, CA</option>
+                    </select>
+                </p>
+                 <p>
+                   Type: 
+                   <select>
+                        <option value="" selected disabled> <strong>Please select</strong></option>
+                        <option value="">Indian</option>
+                        <option value="">Mexican</option>
+                        <option value="">Italian</option>
+                        <option value="">Asian</option>
+                    </select>
+                </p>
+                 <p>
+                   Price:  
+                   <select>
+                        <option value="" selected disabled> <strong>Please select</strong></option>
+                        <option value="">$</option>
+                        <option value="">$$</option>
+                        <option value="">$$$</option>
+                        <option value="">$$$$</option>
+                    </select>
+                </p>
+                <p>
+                   Sort by:  
+                   <select>
+                        <option value="" selected disabled> <strong>Please select</strong></option>
+                        <option value="">Highest Rated</option>
+                        <option value="">Most-reviewed</option>
+                    </select>
+                </p>
+                 <button type="button" id="btnLogin" class="btn btn-default btn-xlarge">Go</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -95,26 +133,26 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Our
-                        <strong>Team</strong>
+                    <h2 class="intro-text text-center">Your
+                        <strong>Search Results</strong>
                     </h2>
                     <hr>
                 </div>
                 <ul class = "clearfix">
-                    <li><h3>Charles Le
-                        <small>Project Manager</small>
+                    <li><h3>Restaurant 1
+                        <small>Rating</small>
                     </h3></li>
-                    <li><h3>Enrique Padilla 
-                        <small>Product Owner</small>
+                    <li><h3>Restaurant 2
+                        <small>Rating</small>
                     </h3></li>
-                    <li><h3>Roma Solanki
-                        <small>Technical Lead / Architect</small>
+                    <li><h3>Restaurant 3
+                        <small>Rating</small>
                     </h3></li>
-                    <li><h3>Clifford Chan
-                        <small>Documentation / Developer</small>
+                    <li><h3>Restaurant 4
+                       <small>Rating</small>
                     </h3></li>
-                    <li><h3>Gibran
-                        <small>Testing</small>
+                    <li><h3>Restaurant 5
+                       <small>Rating</small>
                     </h3></li>
                 </ul>
                 <div class="clearfix"></div>

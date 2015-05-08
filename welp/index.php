@@ -48,7 +48,8 @@ session_start();
         
         if(isset($_SESSION["pwrd"])) 
         {
-            $username = $_SESSION["pwrd"];
+            
+            $username = "Welcome back, ".$_SESSION["username"];
           print  "<div class=\"address-bar\">".$username."</div>";
           print "<br>";
 
@@ -75,12 +76,20 @@ session_start();
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
 
-                     <li>
-                        <a href="signup.php">Signup</a>
-                    </li>
+                    <?php
+                    if (isset($_SESSION["pwrd"]) == false)
+                    {
+
+                        print "<li>";
+                            print "<a href=\"signup.php\">Signup</a> ";
+                        print "</li>";
+
+                    }
+
+                    ?>
 
                     <?php
                         
@@ -114,9 +123,9 @@ session_start();
                      <li class="dropdown pull-right">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Resources <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="signup.html">Sign Up</a></li>
+                            <li><a href="about.php">About</a></li>
+                            <li><a href="contact.php">Contact</a></li>
+                            <li><a href="signup.php">Sign Up</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Log out</a></li>
                         </ul>
@@ -145,7 +154,7 @@ session_start();
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img class="img-responsive img-full" src="img/slide-1.jpg" alt="">
+                                <img class="img-responsive img-full" src="img/sushi2.jpg" alt="">
                             </div>
                             <div class="item">
                                 <img class="img-responsive img-full" src="img/slide-2.jpg" alt="">
@@ -183,21 +192,48 @@ session_start();
                     <div class="col-md-4">
                         <h2>Review 1</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                        <a class="btn btn-default" href="#">More Info</a>
+                        <?php
+
+                        $tbl_name = "Restaurant";
+                        $number = "Cha Cha Sushi";
+                        $sql = "SELECT iconimage FROM $tbl_name WHERE  name='$number'";
+
+                        $result = $conn->query($sql);
+                     
+                        if ($result->num_rows === 1)
+                        {
+                           
+                           while ($row = $result->fetch_assoc())
+                            {
+
+                                //$icomImage = $row["iconimage"];
+                                // <img class="img-responsive img-full" src="img/slide-1.jpg" alt="">
+
+                                print "<img src=\"img2/sushi2.jpg\" height=\"140\" width=\"180\" >";
+                                //echo "<img src=\"img/{$row['iconimage']}\" height=\"140\" width=\"180\">";
+
+                            }   
+                            
+                        }
+
+                        ?>
+                      <!--   <a class="btn btn-default" href="#">More Info</a> --> 
                     </div>
-                <!-- /.col-md-4 -->
+
+                <!-- /.col-md-4 
                     <div class="col-md-4">
                         <h2>Review 2</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
                         <a class="btn btn-default" href="#">More Info</a>
                     </div>
-                <!-- /.col-md-4 -->
+                
                     <div class="col-md-4">
                         <h2>Review 3</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
                         <a class="btn btn-default" href="#">More Info</a>
                     </div>
             <!-- /.col-md-4 -->
+               
                 </hr>
             </div>
         </div>

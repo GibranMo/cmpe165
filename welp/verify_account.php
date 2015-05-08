@@ -87,11 +87,11 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL))
 	}
 	echo "<p>Successfully added your new account</p>";	
 	
-	/*
+	
 	$_SESSION['username'] = $_POST['username'];
 	$_SESSION['email'] = $_POST['email'];
 	$_SESSION['pwrd'] = $_POST['password2'];
-	*/
+	
 	
 	header('Location: index.php');
 	?>
