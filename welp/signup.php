@@ -1,3 +1,8 @@
+<?php
+include('connect.php');
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,8 +87,8 @@
                     <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
                 </div>
                 <div class="col-md-4">
-                    <p>Name:
-                        <input type="text" id="name" name="name" placeholder="First, Last" class="input-small"></p>
+                <form action="verify_account.php" method="post">
+                    
                     <p>Email:
                         <input type="text" id="email" name="email" placeholder="Email" class="input-small">
                     </p>
@@ -91,13 +96,16 @@
                         <input type="text" id="username" name="username" placeholder="Please enter a username" class="input-small">
                     </p>
                     <p>Create Password:
-                        <input type="text" id="password1" name="password" placeholder="Create Password" class="input-small">
+                        <input type="text" id="password" name="password" placeholder="Create Password" class="input-small">
                     </p>
                     <p>Repeat Password:
-                        <input type="text" id="password2" name="password" placeholder="Repeat Password" class="input-small">
+                        <input type="text" id="password" name="password2" placeholder="Repeat Password" class="input-small">
                     </p>
-                    <button type="button" id="btnLogin" class="btn btn-default btn-block" onclick="checkinfo()">Register</button>
+                    <button type="submit" id="btnLogin" class="btn btn-default btn-block">Register</button>
+
                 </div>
+
+            </form>
                 <div class="clearfix"></div>
             </div>
         </div>

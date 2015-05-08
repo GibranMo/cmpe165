@@ -1,3 +1,9 @@
+<?php
+include('connect.php');
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +40,23 @@
 
     <div class="brand">Welp</div>
     <div class="address-bar">One Washington Square, San Jose, CA 95192</div>
+   
+    <br>
 
+    
+        <?php
+        
+        if(isset($_SESSION["pwrd"])) 
+        {
+            $username = $_SESSION["pwrd"];
+          print  "<div class=\"address-bar\">".$username."</div>";
+          print "<br>";
+
+        }
+
+        ?>
+
+    
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -55,23 +77,40 @@
                     <li>
                         <a href="index.html">Home</a>
                     </li>
-                    <li>
-                        <a data-placement="bottom" data-toggle="popover2" data-title="Login" data-container="body" type="button" data-html="true" href="#" id="login">Login</a>
+
+                     <li>
+                        <a href="signup.php">Signup</a>
                     </li>
-                        <div id="popover-content2" class="hide">
-                          <form class="" role="form">
-                            <div class="form-group">
-                              <input class="form-control" name="username" id="username" type="text" placeholder="Username" pattern="^[a-z,A-Z,0-9,_]{6,15}$" data-valid-min="6" title="Enter your username" required="">
-                            </div>
-                            <div class="form-group">    
-                                <input class="form-control" name="password" id="password" type="password" placeholder="Password" title="Enter your password" required="">
-                            </div>  
-                                 <button type="button" id="btnLogin" class="btn btn-default btn-block" onclick="login()">Login</button>
-                            </form>
-                        </div>
+
+                    <?php
+                        
+                        if (isset($_SESSION["pwrd"]) == false )
+                        {
+                            print "<li>";
+                            print "<a data-placement=\"bottom\" data-toggle=\"popover2\" data-title=\"Login\" data-container=\"body\" type=\"button\" data-html=\"true\" href=\"login.php\" id=\"login\">Login</a>";
+                            print "</li>";
+                            
+                        }
+                     
+                    ?>
                      <li>
                         <a href="search.html">Advanced Search</a>
                     </li>
+
+                    
+                        <?php
+                            
+                            if (isset($_SESSION["pwrd"]))
+                            {
+                                print "<li>";
+                                    print "<a href=\"logout.php\">Logout</a>";
+                                print "</li>";
+                            }
+
+
+                        ?>
+
+                    
                      <li class="dropdown pull-right">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Resources <b class="caret"></b></a>
                         <ul class="dropdown-menu">
