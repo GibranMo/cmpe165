@@ -91,11 +91,13 @@ session_start();
                     
                     
                     <p>Email:
-                        <input type="text" id="email" name="email" placeholder="Please enter email" class="input-small">
+                        <br>
+                        <input type="text" size="35" id="email" name="email" placeholder="Please enter email" class="input-small">
                     </p>
                     
                     <p>Password:
-                        <input type="text" id="password" name="pwrd" placeholder="Password" class="input-small">
+                        <br>
+                        <input type="text" size="35" id="password" name="pwrd" placeholder="Password" class="input-small">
                     </p>
                     
                     <input type="submit" id="btnLogin" class="btn btn-default btn-block" value= "Login">
@@ -163,7 +165,7 @@ session_start();
     <!-- /.container -->
 
     <footer>
-        <div class="container">
+        <div class="box">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <p>Copyright &copy; Your Website 2014</p>

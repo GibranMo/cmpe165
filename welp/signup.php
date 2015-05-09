@@ -90,16 +90,20 @@ session_start();
                 <form action="verify_account.php" method="post">
                     
                     <p>Email:
+                        <br>
                         <input type="text" id="email" name="email" placeholder="Email" class="input-small">
                     </p>
                     <p>Username:
-                        <input type="text" id="username" name="username" placeholder="Please enter a username" class="input-small">
+                        <br>
+                        <input type="text" id="username" name="username" placeholder="Username" class="input-small">
                     </p>
+              
                     <p>Create Password:
+                        <br>
                         <input type="text" id="password" name="password" placeholder="Create Password" class="input-small">
                     </p>
-                    <p>Repeat Password:
-                        <input type="text" id="password" name="password2" placeholder="Repeat Password" class="input-small">
+                    <p>
+                        <input type="text" id="password" name="password2" placeholder="Confirm Password" class="input-small">
                     </p>
                     <button type="submit" id="btnLogin" class="btn btn-default btn-block">Register</button>
 
@@ -116,13 +120,15 @@ session_start();
     <!-- /.container -->
 
     <footer>
-        <div class="container">
-            <div class="row">
+        
+        <div class="box">
+            <div class="clearfix">
                 <div class="col-lg-12 text-center">
                     <p>Copyright &copy; Your Website 2014</p>
                 </div>
             </div>
         </div>
+          
     </footer>
 
     <!-- jQuery -->

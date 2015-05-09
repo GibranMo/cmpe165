@@ -30,7 +30,7 @@
     </head>
 
     <body> 
-        <div class="brand">Restaurant Name</div>
+        <div class="brand">Welp</div>
         <div class="address-bar">One Washington Square, San Jose, CA 95192</div>
 
         <!-- Navigation -->
@@ -103,30 +103,33 @@
                         </h2>
                         <hr>
                     </div>
-                    <!--<ul class = "clearfix">-->
-                        <h3>Rating
-                            <small> <!--<span class="star-cb-group">-->
-                                    <p><input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5">5 star</label></p>
-                                    <p><input type="radio" id="rating-4" name="rating" value="4" checked="checked" /><label for="rating-4">4 star</label></p>
-                                    <p><input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3">3 star</label></p>
-                                    <p><input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2">2 star</label></p>
-                                    <p><input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1">1 star</label></p>
-                                <!--</span>--></small>
-                            <textarea rows="10" columns="100">hello
-                            </textarea>
-                            <br>
-                            <input type="button" id="submit" value="submit">
 
-                        </h3>
+                    <h3>Rating
+                        <small> 
+                            <select>
+                                <option>1 - Poor</option>
+                                <option>2 - Okay</option>
+                                <option>3 - Good</option>
+                                <option>4 - Great</option>
+                                <option>5 - Epic</option>
+                            </select>
+                        </small>
+                        <br>
+                        <textarea style="width: 300px;" rows="7" >heasdllo
+                        </textarea>     
+                        <br>
+                        <input type="button" id="submit" value="submit">
+
+                    </h3>
                     <!--</ul>-->
                 </div>
-                    <ul class = "clearfix">
+                <ul class = "clearfix">
 
-                        <div class="clearfix"></div>
-                </div>
+                    <div class="clearfix"></div>
             </div>
+        </div>
 
-        
+
         <!-- /.container -->
 
         <footer>
