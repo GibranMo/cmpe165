@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 07, 2015 at 11:22 AM
+-- Generation Time: May 09, 2015 at 03:29 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `welp`
+-- Database: `myvideos`
 --
 
 -- --------------------------------------------------------
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS `Restaurant` (
 --
 
 INSERT INTO `Restaurant` (`id`, `categoryID`, `name`, `address`, `rating`, `iconimage`, `city`, `placetype`, `foodtype`, `tags`) VALUES
-(1, 1, 'Fushi Sushi', '56 W Santa Clara St\r\nSan Jose, CA 95113\r\nPhone number (408) 298-3854', 3, 'http://s3-media4.fl.yelpcdn.com/bphoto/v78dg8-nh55pEdf0n05aYw/ls.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food'),
-(2, 2, 'Kenji Sushi', '385 S Winchester Blvd\r\nSan Jose, CA 95128\r\nPhone number (408) 985-1889', 3, 'http://s3-media1.fl.yelpcdn.com/bphoto/4v_sB-UBTqAMoAXshD5M0w/ls.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food'),
-(3, 3, 'Cha Cha Sushi', '547 W Capitol Expy\r\nSan Jose, CA 95136\r\nPhone number (408) 265-2416', 4, 'http://s3-media1.fl.yelpcdn.com/bphoto/fI5GvJ5umK-Bn9V5GUOvQA/ls.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food'),
+(1, 1, 'Fuji Sushi', '56 W Santa Clara St\r\nSan Jose, CA 95113\r\nPhone number (408) 298-3854', 3, 'fuji.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food'),
+(2, 2, 'Kenji Sushi', '385 S Winchester Blvd\r\nSan Jose, CA 95128\r\nPhone number (408) 985-1889', 3, 'kenji.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food'),
+(3, 3, 'Cha Cha Sushi', '547 W Capitol Expy\r\nSan Jose, CA 95136\r\nPhone number (408) 265-2416', 4, 'test2.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food'),
 (4, 3, 'Misu Sushi Bar & Grill', '1035 S Winchester Blvd\r\nSan Jose, CA 95128\r\nPhone number (408) 260-7200', 2, 'http://s3-media4.fl.yelpcdn.com/bphoto/h5g_7SnkkZfGDpx0VgWl3Q/ls.jpg', 'Emeryville', 'Bar & Grill', 'Japanese', 'sushi, food'),
 (5, 1, 'Kenzo Japanese Restaurant', '5465 Snell Ave\r\nSan Jose, CA 95123\r\nPhone number (408) 226-2114', 3, 'http://s3-media2.fl.yelpcdn.com/bphoto/8dzI493EeXUqOR0ufiksoQ/ls.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food, dinner');
 

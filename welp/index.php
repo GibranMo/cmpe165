@@ -138,6 +138,8 @@ session_start();
         <!-- /.container -->
     </nav>
 
+
+
     <div class="container">
 
         <div class="row">
@@ -154,7 +156,7 @@ session_start();
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img class="img-responsive img-full" src="img/sushi2.jpg" alt="">
+                                <img class="img-responsive img-full" src="img/slide-1.jpg" alt="">
                             </div>
                             <div class="item">
                                 <img class="img-responsive img-full" src="img/slide-2.jpg" alt="">
@@ -195,8 +197,8 @@ session_start();
                         <?php
 
                         $tbl_name = "Restaurant";
-                        $number = "Cha Cha Sushi";
-                        $sql = "SELECT iconimage FROM $tbl_name WHERE  name='$number'";
+                        $number = 1;
+                        $sql = "SELECT iconimage FROM $tbl_name WHERE  id='$number'";
 
                         $result = $conn->query($sql);
                      
@@ -208,16 +210,18 @@ session_start();
 
                                 //$icomImage = $row["iconimage"];
                                 // <img class="img-responsive img-full" src="img/slide-1.jpg" alt="">
-
-                                print "<img src=\"img2/sushi2.jpg\" height=\"140\" width=\"180\" >";
-                                //echo "<img src=\"img/{$row['iconimage']}\" height=\"140\" width=\"180\">";
+                                // <img src="img2/sushi2.jpg" height="140" width="180" >
+                                //  print "<img src=\"img2/sushi2.jpg\" height=\"140\" width=\"180\" >";
+                                echo "<img src=\"img/{$row['iconimage']}\" height=\"250\" width=\"250\">";
 
                             }   
                             
                         }
 
+
                         ?>
                       <!--   <a class="btn btn-default" href="#">More Info</a> --> 
+                        <!-- <img src="img/portfolio/tech.jpg" height="140" width="180" > --> 
                     </div>
 
                 <!-- /.col-md-4 
@@ -226,29 +230,31 @@ session_start();
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
                         <a class="btn btn-default" href="#">More Info</a>
                     </div>
-                
+    
                     <div class="col-md-4">
                         <h2>Review 3</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
                         <a class="btn btn-default" href="#">More Info</a>
                     </div>
-            <!-- /.col-md-4 -->
+             /.col-md-4 -->
                
                 </hr>
             </div>
         </div>
 
-        
 
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <p>Copyright &copy; Your Website 2014</p>
+                    <img src="img/test2.jpg" height="250" width="250" >
                 </div>
             </div>
         </div>
     </footer>
+
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
