@@ -133,7 +133,7 @@ session_start();
                     
                     <p>Password:
                         <br>
-                        <input type="text" size="35" id="password" name="pwrd" placeholder="Password" class="input-small">
+                        <input type="password" size="35" id="password" name="pwrd" placeholder="Password" class="input-small">
                     </p>
                     
                     <input type="submit" id="btnLogin" class="btn btn-default btn-block" value= "Login">

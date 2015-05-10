@@ -186,10 +186,10 @@ session_start();
               
                     <p>Create Password:
                         <br>
-                        <input type="text" id="password" name="password" placeholder="Create Password" class="input-small">
+                        <input type="password" id="password" name="password" placeholder="Create Password" class="input-small">
                     </p>
                     <p>
-                        <input type="text" id="password" name="password2" placeholder="Confirm Password" class="input-small">
+                        <input type="password" id="password" name="password2" placeholder="Confirm Password" class="input-small">
                     </p>
                     <button type="submit" id="btnLogin" class="btn btn-default btn-block">Register</button>
                     <?php 
