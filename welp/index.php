@@ -78,6 +78,26 @@ session_start();
                     <li>
                         <a href="index.php">Home</a>
                     </li>
+
+
+                     <li>
+                        <a href="search.php">Advanced Search</a>
+                    </li>
+
+                    
+                        
+
+                    
+                     <li class="dropdown pull-right">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Resources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.php">About</a></li>
+                            <li><a href="contact.php">Contact</a></li>
+                            <!--<li><a href="signup.php">Sign Up</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <!--<li><a href="#">Log out</a></li>-->
+                        </ul>
+                    </li>
                     
                     <?php
                         
@@ -99,26 +119,6 @@ session_start();
                             }
                      
                     ?>
-
-                   
-                     <li>
-                        <a href="search.php">Advanced Search</a>
-                    </li>
-
-                    
-                        
-
-                    
-                     <li class="dropdown pull-right">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Resources <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="about.php">About</a></li>
-                            <li><a href="contact.php">Contact</a></li>
-                            <!--<li><a href="signup.php">Sign Up</a></li>-->
-                            <!--<li class="divider"></li>-->
-                            <!--<li><a href="#">Log out</a></li>-->
-                        </ul>
-                    </li>
                     
                 </ul>
             </div>
