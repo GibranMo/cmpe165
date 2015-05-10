@@ -86,12 +86,17 @@ session_start();
                             print "<li class=\"dropdown pull-right\">";
 								print "<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">Login/Signup <b class=\"caret\"></b></a>";
 								print "<ul class=\"dropdown-menu\">";
-									print "<li><a href=\"signup.php\">Signup</a></li>";
-									print "<li><a href=\"login.php\">Login</a></li>";
+                                                                print "<li><a href=\"login.php\">Login</a></li>";
+								print "<li><a href=\"signup.php\">Signup</a></li>";
 								print "</ul>";
 							print "</li>";
                             
-                        }
+                        }else if(isset($_SESSION["pwrd"]))
+                            {
+                                print "<li>";
+                                    print "<a href=\"logout.php\">Logout</a>";
+                                print "</li>";
+                            }
                      
                     ?>
 
@@ -101,17 +106,7 @@ session_start();
                     </li>
 
                     
-                        <?php
-                            
-                            if (isset($_SESSION["pwrd"]))
-                            {
-                                print "<li>";
-                                    print "<a href=\"logout.php\">Logout</a>";
-                                print "</li>";
-                            }
-
-
-                        ?>
+                        
 
                     
                      <li class="dropdown pull-right">

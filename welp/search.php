@@ -255,83 +255,28 @@ session_start();
                                             echo "<p><b>'$tagsText'</b></p> ";
                                             
                                            
-                                            
-                                            if ($row['rating'] == 5)
-                                            { 
+                                             $restaurantRating = [ 
+                                            1 => "<img class=\"img-responsive img-border-left\" src=\"img/r1.png\">",
+                                            2 => "<img class=\"img-responsive img-border-left\" src=\"img/r2.png\">",
+                                            3 => "<img class=\"img-responsive img-border-left\" src=\"img/r3.png\">",
+                                            4 => "<img class=\"img-responsive img-border-left\" src=\"img/r4.png\">",
+                                            5 => "<img class=\"img-responsive img-border-left\" src=\"img/r5.png\">"];
 
-                                                 //echo "<div>";
-                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r5.png\">";
-                                                 //echo "</div>";
 
-                                            }
-                                            else if ($row['rating'] == 4)
-                                            {
-                                                //echo "<div>";
-                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r4.png\">";
-                                                 //echo "</div>";
-
-                                            }
-                                            else if ($row['rating'] == 3)
-                                            {
-                                                echo "<div>";
-                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r3.png\">";
-                                                echo "</div>";
-
-                                                
-
-                                            }
-                                            else if ($row['rating'] == 2)
-                                            {
-                                                //echo "<div>";
-                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r2.png\">";
-                                                 //echo "</div>";
-
-                                            }
-                                            else if ($row['rating'] == 1)
-                                            {
-                                                //echo "<div>";
-                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r1.png\">";
-                                                 //echo "</div>";
-
-                                            }
+                                           echo $restaurantRating[$row['rating']];
 
                                             //***** Beging: price range ******//
-                                            
-                                            if ($row['cost'] == 4)
-                                            { 
-
-                                                echo "<br>";
-
-                                                echo "<p> <b> Price range:  ";
-                                                echo "$$$$</b></p>";
-
-                                            }
-                                            else if ($row['cost'] == 3)
-                                            {
-                                        
-                                                echo "<br>";
+                                           $restaurantPricing = [
+                                           1 => "$",
+                                           2 => "$$",
+                                           3 => "$$$",
+                                           4 => "$$$$"];
+                                            echo "<br>";
 
                                                 echo "<p> <b> Price range:  ";
-                                                echo "$$$</b>$</p>";
+                                                echo $restaurantPricing[$row['cost']]."</b></p>";
                                                 
-
-                                            }
-                                            else if ($row['cost'] == 2)
-                                            {
-                                                echo "<br>";
-
-                                                echo "<p> <b> Price range:  ";
-                                                echo "$$</b>$$</p>";
-
-                                            }
-                                            else if ($row['cost'] == 1)
-                                            {  
-                                                echo "<br>";
-
-                                                echo "<p> <b> Price range:  ";
-                                                echo "$</b>$$$</p>";
-                                            }
-
+                                                
                                             echo "<br>";
                                             echo "<br>";
                                             
