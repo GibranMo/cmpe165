@@ -125,9 +125,9 @@ session_start();
                         <ul class="dropdown-menu">
                             <li><a href="about.php">About</a></li>
                             <li><a href="contact.php">Contact</a></li>
-                            <li><a href="signup.php">Sign Up</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Log out</a></li>
+                            <!--<li><a href="signup.php">Sign Up</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <!--<li><a href="#">Log out</a></li>-->
                         </ul>
                     </li>
                     
