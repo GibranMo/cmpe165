@@ -101,6 +101,7 @@ session_start();
                         <option value="Santa Clara">Santa Clara, CA</option>
                         <option value="Sunnyvale">Sunnyvale, CA</option>
                         <option value="Stockton">Stockton, CA</option>
+                        <option value="Milpitas">Milpitas, CA</option>
                     </select>
                 </p>
                  <p>
@@ -128,17 +129,19 @@ session_start();
                 </p>
                 <p>
                    Sort by:  
-                   <select>
+                   <select name = "rating">
                         <option value="" selected disabled> <strong>Please select</strong></option>
-                        <option value="">Highest Rated</option>
-                        <option value="">Most-reviewed</option>
+                        <option value="5">Highest Rated</option>
+                        <option value="6">Most-reviewed</option>
                     </select>
                 </p>
 
+                <p>Search:
+                        <input type="text" id="password" name="keyword" placeholder="keywords" class="input-small">
+                    </p>
+
                 <p>
-                    <?php
-                        //echo "<input class=\"input-small\" type=\"text\" value=\"Generic\" placeholder="restaurant name, etc" size=\"45\" maxlength = \"80\" name = \"textsearch\" >";
-                    ?>
+                    
                 </p>
                  <!--<button type="button" id="btnLogin" class="btn btn-default btn-xlarge">Go</button>-->
                 <input type="submit" name="submit" id="btnLogin" class="btn btn-default btn-block" value= "Search">
@@ -148,13 +151,7 @@ session_start();
                 <div class="clearfix"></div>
             </form>
 
-            <div class="rate-ex1-cnt">
-                <div id="1" class="rate-btn-1 rate-btn"></div>
-                <div id="2" class="rate-btn-2 rate-btn"></div>
-                <div id="3" class="rate-btn-3 rate-btn"></div>
-                <div id="4" class="rate-btn-4 rate-btn"></div>
-                <div id="5" class="rate-btn-5 rate-btn"></div>
-            </div>
+            
            
             </div>
         </div>        
@@ -169,125 +166,206 @@ session_start();
                     if (isset($_POST["submit"])) 
                     {  
                         
-                        echo "<div class=\"col-lg-12\">";
-                            echo "<hr>";
-                                echo "<h2 class=\"intro-text text-center\">Your";
-                                    echo "<strong> Search Results</strong>";
-                                echo"</h2>";
-                            echo"<hr>";
-                        echo"</div>";
+                                echo "<div class=\"col-lg-12\">";
+                                    echo "<hr>";
+                                        echo "<h2 class=\"intro-text text-center\">Your";
+                                            echo "<strong> Search Results</strong>";
+                                        echo"</h2>";
+                                    echo"<hr>";
+                                echo"</div>";
 
-                        /* Default: query */
-                        $counter = 0; //to keep track of 'ANDs' in queries
-                        $sql = "SELECT iconimage, name, address, rating, city, placetype, cost, tags FROM restaurant";
-
-                        if (isset($_POST['food'])) 
-                        {  
-                        
-                            $food = $_POST['food'];
-                            $subquery = " WHERE foodtype = '$food' ";
-                            $sql = $sql.$subquery;
-                            $counter++;
-
-                        } 
-
-
-                        if (isset($_POST['price'])) 
-                        {
-                            $price = $_POST['price'];
-
-                            if ($counter > 0)
-                            {
-                                $subquery = " AND cost = '$price' ";
-                            }
-                            else
-                                $subquery = " WHERE cost = '$price' ";
-
-                            $sql = $sql.$subquery;
-                            $counter++;
-
-                        }
-
-                        if (isset($_POST['city'])) 
-                        {
-                            $city = $_POST['city'];
-
-                            if ($counter > 0)
-                            {
-                                $subquery = " AND city = '$city' ";
-                            }
-                            else
-                                $subquery = " WHERE city = '$city' ";
-
-                            $sql = $sql.$subquery;
-                            $counter++;
-
-                        }
-
-
-
-                            $result2 = $conn->query($sql);
-
-                            if ($result2->num_rows > 0)
-                            {
-                                while ($row = $result2->fetch_assoc())
-                                {
-                                    $restname = $row['name'];
                                 
-                                        echo "<br>";
+
+                                $sql = "SELECT iconimage, name, address, rating, city, placetype, cost, tags FROM restaurant";
+                                $counter = 0;
+                                if (!empty($_POST['keyword']))
+                                { 
                                     
                                     
-                                            echo "<h2>";
-                                                echo "<strong>".$restname."</strong>";
-                                            echo "</h2>";
-                                                echo "<br>";
-                                                echo "<img src=\"img/{$row['iconimage']}\" height=\"250\" width=\"250\">";
+                                    $bucketsearch = $_POST['keyword'];
+                                
+                                    $searchTerms = explode(' ', $bucketsearch);
+
+                                    $searchTermBits = array();
+
+                                    foreach ($searchTerms as $term) 
+                                    {
+                                        $term = trim($term);
+                                        //echo $term."<br>";
+                                        if (!empty($term)) 
+                                        {
+        
+                                            $searchTermBits[] = "searchTag LIKE '%$term%'";
+                                        }
+
+                                        $sql = "SELECT iconimage, name, address, rating, city, placetype, cost, tags FROM restaurant WHERE ".implode(' OR ', $searchTermBits);
+                                        
+                                    }
+                                    
+                                    $counter++;
 
 
-                                            $city = $row['city'];
-
-                                            $tagsText = $row['tags'];
-
-                                            echo "<h2>City: ";
-                                                echo "<strong> $city</strong>";
-                                            echo"</h2>";
-                                            
-                                            echo "<p><b>'$tagsText'</b></p> ";
-                                            
-                                           
-                                             $restaurantRating = [ 
-                                            1 => "<img class=\"img-responsive img-border-left\" src=\"img/r1.png\">",
-                                            2 => "<img class=\"img-responsive img-border-left\" src=\"img/r2.png\">",
-                                            3 => "<img class=\"img-responsive img-border-left\" src=\"img/r3.png\">",
-                                            4 => "<img class=\"img-responsive img-border-left\" src=\"img/r4.png\">",
-                                            5 => "<img class=\"img-responsive img-border-left\" src=\"img/r5.png\">"];
-
-
-                                           echo $restaurantRating[$row['rating']];
-
-                                            //***** Beging: price range ******//
-                                           $restaurantPricing = [
-                                           1 => "$",
-                                           2 => "$$",
-                                           3 => "$$$",
-                                           4 => "$$$$"];
-                                            echo "<br>";
-
-                                                echo "<p> <b> Price range:  ";
-                                                echo $restaurantPricing[$row['cost']]."</b></p>";
-                                                
-                                                
-                                            echo "<br>";
-                                            echo "<br>";
-                                            
-                                            echo "<div class=\"text-center\">";
-                                            echo "<p>";
-                                                echo $row["address"];
-                                            echo "</p>";
-                                            echo "</div>";
-
-                                            echo "<hr class=\"tagline-longdivider\">";
                                 }
+                               
+                                        
+                                            if (isset($_POST['price'])) 
+                                            {
+                                                $price = $_POST['price'];
+
+                                                if ($counter > 0)
+                                                {
+                                                    $subquery = " AND cost = '$price' ";
+                                                }
+                                                else
+                                                    $subquery = " WHERE cost = '$price' ";
+
+                                                $sql = $sql.$subquery;
+                                                $counter++;
+
+                                            }
+
+                                            if (isset($_POST['city'])) 
+                                            {
+                                                $city = $_POST['city'];
+
+                                                if ($counter > 0)
+                                                {
+                                                    $subquery = " AND city = '$city' ";
+                                                }
+                                                else
+                                                    $subquery = " WHERE city = '$city' ";
+
+                                                $sql = $sql.$subquery;
+                                                $counter++;
+
+                                            }
+                                            
+                                            if (isset($_POST['rating'])) 
+                                            {
+                                                $rating = $_POST['rating'];
+                                               
+                                               if ($rating == 5) 
+                                                {
+                                                    if ($counter > 0) 
+                                                    {
+                                                        $subquery = " AND rating = '$rating' ";
+                                                    }
+                                                    else
+                                                    {
+                                                        $subquery = " WHERE rating = '$rating'";
+                                                    }
+
+                                                }
+                                                else if ($rating == 6)
+                                                {
+                                                    //calculate above average number of reviews
+                                                    $query = "SELECT numReviews FROM restaurant";
+
+                                                    $rcontainer = $conn->query($query);
+
+                                                    if ($rcontainer->num_rows > 0)
+                                                    {
+                                                        $countRows = 0;
+                                                        $sum = 0;
+                                                        while ($row1 = $rcontainer->fetch_assoc())
+                                                        {
+                                                            $num = $row1['numReviews'];
+                                                            $sum = $sum + $num;
+
+
+                                                            $countRows++;
+
+                                                        }
+
+                                                        $average = $sum/$countRows;
+
+                                                        $bottomAvg = floor($average);
+
+                                                    }
+
+                                                    if ($counter > 0)
+                                                    {
+                                                        $subquery = " AND numReviews > '$bottomAvg' ";
+
+                                                    }
+                                                    else
+                                                    {
+                                                        $subquery = " WHERE numReviews > '$bottomAvg' ";
+                                                    }
+
+                                                }
+
+                                                    $sql = $sql.$subquery;
+                                                    $counter++;
+                                            }
+
+
+                                    //}/* else isset($_POST['keyword'])*/  
+                                    $result2 = $conn->query($sql);
+                                    echo "<br>";
+                                    
+                                    echo "<br>";
+                                    if ($result2->num_rows > 0)
+                                    {
+                                        while ($row = $result2->fetch_assoc())
+                                        {
+                                            $restname = $row['name'];
+                                        
+                                                echo "<br>";
+                                            
+                                            
+                                                    echo "<h2>";
+                                                        echo "<strong>".$restname."</strong>";
+                                                    echo "</h2>";
+                                                        echo "<br>";
+                                                        echo "<img src=\"img/{$row['iconimage']}\" height=\"250\" width=\"250\">";
+
+
+                                                    $city = $row['city'];
+
+                                                    $tagsText = $row['tags'];
+
+                                                    echo "<h2>City: ";
+                                                        echo "<strong> $city</strong>";
+                                                    echo"</h2>";
+                                                    
+                                                    echo "<p><b>'$tagsText'</b></p> ";
+                                                    
+                                                   
+                                                    
+                                                    $restaurantRating = [ 
+                                                    1 => "<img class=\"img-responsive img-border-left\" src=\"img/r1.png\">",
+                                                    2 => "<img class=\"img-responsive img-border-left\" src=\"img/r2.png\">",
+                                                    3 => "<img class=\"img-responsive img-border-left\" src=\"img/r3.png\">",
+                                                    4 => "<img class=\"img-responsive img-border-left\" src=\"img/r4.png\">",
+                                                    5 => "<img class=\"img-responsive img-border-left\" src=\"img/r5.png\">"];
+
+                                                    echo $restaurantRating[$row['rating']];
+
+                                                    //***** Beging: price range ******//
+                                                    
+                                                     $restaurantPricing = [
+                                                    0 => "" ,
+                                                    1 => "$",
+                                                    2 => "$$",
+                                                    3 => "$$$",
+                                                    4 => "$$$$"];
+                                                    echo "<br>";
+                                                    echo "<p><b>Price Range: ".$restaurantPricing[$row['cost']]."</b>".$restaurantPricing[4-$row['cost']]."</p>";
+                                                    echo "<br>";
+
+
+                                                    echo "<br>";
+                                                    echo "<br>";
+                                                    
+                                                    echo "<div class=\"text-center\">";
+                                                    echo "<p>";
+                                                        echo $row["address"];
+                                                    echo "</p>";
+                                                    echo "</div>";
+
+                                                    echo "<hr class=\"tagline-longdivider\">";
+                                        }
                             }
                             else
                                         echo "<br>";
@@ -296,8 +374,7 @@ session_start();
                                         echo "</h2>";
                                         
                         }
-                        else
-                            echo "form not detected";
+                        
 
             
                 ?>
