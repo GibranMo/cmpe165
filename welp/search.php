@@ -1,3 +1,9 @@
+<?php
+include('connect.php');
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,37 +88,42 @@
                 <div class="col-md-6">
                     <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
                 </div>
+
+                <form action= "search.php" method="POST" >
                 <div class="col-md-6">
                   <p>
                    Search restaurants near:  
-                   <select>
+                   <select name = "city">
                         <option value="" selected disabled> <strong>Please select</strong></option>
-                        <option value="">San Jose, CA</option>
-                        <option value="">San Francisco, CA</option>
-                        <option value="">Fremont, CA</option>
-                        <option value="">Santa Clara, CA</option>
-                        <option value="">Sunnyvale, CA</option>
-                        <option value="">Stockton, CA</option>
+                        <option value="San Jose">San Jose, CA</option>
+                        <option value="San Francisco">San Francisco, CA</option>
+                        <option value="Fremont">Fremont, CA</option>
+                        <option value="Santa Clara">Santa Clara, CA</option>
+                        <option value="Sunnyvale">Sunnyvale, CA</option>
+                        <option value="Stockton">Stockton, CA</option>
                     </select>
                 </p>
                  <p>
                    Type: 
-                   <select>
+                   <select name="food">
                         <option value="" selected disabled> <strong>Please select</strong></option>
-                        <option value="">Indian</option>
-                        <option value="">Mexican</option>
-                        <option value="">Italian</option>
-                        <option value="">Asian</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="American">American</option>
+                        <option value="Japanese">French</option>
                     </select>
                 </p>
                  <p>
                    Price:  
-                   <select>
+                   <select name = "price">
                         <option value="" selected disabled> <strong>Please select</strong></option>
-                        <option value="">$</option>
-                        <option value="">$$</option>
-                        <option value="">$$$</option>
-                        <option value="">$$$$</option>
+                        <option value="1">$</option>
+                        <option value="2">$$</option>
+                        <option value="3">$$$</option>
+                        <option value="4">$$$$</option>
                     </select>
                 </p>
                 <p>
@@ -123,37 +134,228 @@
                         <option value="">Most-reviewed</option>
                     </select>
                 </p>
-                 <button type="button" id="btnLogin" class="btn btn-default btn-xlarge">Go</button>
+
+                <p>
+                    <?php
+                        //echo "<input class=\"input-small\" type=\"text\" value=\"Generic\" placeholder="restaurant name, etc" size=\"45\" maxlength = \"80\" name = \"textsearch\" >";
+                    ?>
+                </p>
+                 <!--<button type="button" id="btnLogin" class="btn btn-default btn-xlarge">Go</button>-->
+                <input type="submit" name="submit" id="btnLogin" class="btn btn-default btn-block" value= "Search">
+                
                 </div>
+
                 <div class="clearfix"></div>
+            </form>
+
+            <div class="rate-ex1-cnt">
+                <div id="1" class="rate-btn-1 rate-btn"></div>
+                <div id="2" class="rate-btn-2 rate-btn"></div>
+                <div id="3" class="rate-btn-3 rate-btn"></div>
+                <div id="4" class="rate-btn-4 rate-btn"></div>
+                <div id="5" class="rate-btn-5 rate-btn"></div>
             </div>
-        </div>
+           
+            </div>
+        </div>        
+
 
         <div class="row">
             <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Your
-                        <strong>Search Results</strong>
-                    </h2>
-                    <hr>
-                </div>
                 <ul class = "clearfix">
-                    <li><h3>Restaurant 1
-                        <small>Rating</small>
-                    </h3></li>
-                    <li><h3>Restaurant 2
-                        <small>Rating</small>
-                    </h3></li>
-                    <li><h3>Restaurant 3
-                        <small>Rating</small>
-                    </h3></li>
-                    <li><h3>Restaurant 4
-                       <small>Rating</small>
-                    </h3></li>
-                    <li><h3>Restaurant 5
-                       <small>Rating</small>
-                    </h3></li>
+
+                <?php  
+
+                    if (isset($_POST["submit"])) 
+                    {  
+                        
+                        echo "<div class=\"col-lg-12\">";
+                            echo "<hr>";
+                                echo "<h2 class=\"intro-text text-center\">Your";
+                                    echo "<strong> Search Results</strong>";
+                                echo"</h2>";
+                            echo"<hr>";
+                        echo"</div>";
+
+                        /* Default: query */
+                        $counter = 0; //to keep track of 'ANDs' in queries
+                        $sql = "SELECT iconimage, name, address, rating, city, placetype, cost, tags FROM restaurant";
+
+                        if (isset($_POST['food'])) 
+                        {  
+                        
+                            $food = $_POST['food'];
+                            $subquery = " WHERE foodtype = '$food' ";
+                            $sql = $sql.$subquery;
+                            $counter++;
+
+                        } 
+
+
+                        if (isset($_POST['price'])) 
+                        {
+                            $price = $_POST['price'];
+
+                            if ($counter > 0)
+                            {
+                                $subquery = " AND cost = '$price' ";
+                            }
+                            else
+                                $subquery = " WHERE cost = '$price' ";
+
+                            $sql = $sql.$subquery;
+                            $counter++;
+
+                        }
+
+                        if (isset($_POST['city'])) 
+                        {
+                            $city = $_POST['city'];
+
+                            if ($counter > 0)
+                            {
+                                $subquery = " AND city = '$city' ";
+                            }
+                            else
+                                $subquery = " WHERE city = '$city' ";
+
+                            $sql = $sql.$subquery;
+                            $counter++;
+
+                        }
+
+
+
+                            $result2 = $conn->query($sql);
+
+                            if ($result2->num_rows > 0)
+                            {
+                                while ($row = $result2->fetch_assoc())
+                                {
+                                    $restname = $row['name'];
+                                
+                                        echo "<br>";
+                                    
+                                    
+                                            echo "<h2>";
+                                                echo "<strong>".$restname."</strong>";
+                                            echo "</h2>";
+                                                echo "<br>";
+                                                echo "<img src=\"img/{$row['iconimage']}\" height=\"250\" width=\"250\">";
+
+
+                                            $city = $row['city'];
+
+                                            $tagsText = $row['tags'];
+
+                                            echo "<h2>City: ";
+                                                echo "<strong> $city</strong>";
+                                            echo"</h2>";
+                                            
+                                            echo "<p><b>'$tagsText'</b></p> ";
+                                            
+                                           
+                                            
+                                            if ($row['rating'] == 5)
+                                            { 
+
+                                                 //echo "<div>";
+                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r5.png\">";
+                                                 //echo "</div>";
+
+                                            }
+                                            else if ($row['rating'] == 4)
+                                            {
+                                                //echo "<div>";
+                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r4.png\">";
+                                                 //echo "</div>";
+
+                                            }
+                                            else if ($row['rating'] == 3)
+                                            {
+                                                echo "<div>";
+                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r3.png\">";
+                                                echo "</div>";
+
+                                                
+
+                                            }
+                                            else if ($row['rating'] == 2)
+                                            {
+                                                //echo "<div>";
+                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r2.png\">";
+                                                 //echo "</div>";
+
+                                            }
+                                            else if ($row['rating'] == 1)
+                                            {
+                                                //echo "<div>";
+                                                    echo "<img class=\"img-responsive img-border-left\" src=\"img/r1.png\">";
+                                                 //echo "</div>";
+
+                                            }
+
+                                            //***** Beging: price range ******//
+                                            
+                                            if ($row['cost'] == 4)
+                                            { 
+
+                                                echo "<br>";
+
+                                                echo "<p> <b> Price range:  ";
+                                                echo "$$$$</b></p>";
+
+                                            }
+                                            else if ($row['cost'] == 3)
+                                            {
+                                        
+                                                echo "<br>";
+
+                                                echo "<p> <b> Price range:  ";
+                                                echo "$$$</b>$</p>";
+                                                
+
+                                            }
+                                            else if ($row['cost'] == 2)
+                                            {
+                                                echo "<br>";
+
+                                                echo "<p> <b> Price range:  ";
+                                                echo "$$</b>$$</p>";
+
+                                            }
+                                            else if ($row['cost'] == 1)
+                                            {  
+                                                echo "<br>";
+
+                                                echo "<p> <b> Price range:  ";
+                                                echo "$</b>$$$</p>";
+                                            }
+
+                                            echo "<br>";
+                                            echo "<br>";
+                                            
+                                            echo "<div class=\"text-center\">";
+                                            echo "<p>";
+                                                echo $row["address"];
+                                            echo "</p>";
+                                            echo "</div>";
+
+                                            echo "<hr class=\"tagline-longdivider\">";
+                                }
+                            }
+                            else
+                                        echo "<br>";
+                                        echo "<h2 class=\"intro-text text-center\">";
+                                            echo "<strong>No results found </strong>";
+                                        echo "</h2>";
+                                        
+                        }
+                        else
+                            echo "form not detected";
+
+            
+                ?>
                 </ul>
                 <div class="clearfix"></div>
             </div>
