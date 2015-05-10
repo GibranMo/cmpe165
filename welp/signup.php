@@ -108,8 +108,58 @@ session_start();
         <!-- /.container -->
     </nav>
 
+    <?php
+    $emptyErr = $emailErr = $passMatchErr = $emailExErr = $passLenErr = "";
+    $email = $username = $pass1 = $pass2 = "";
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $pass1 = $_POST['password'];
+        $pass2 = $_POST['password2'];
+        
+        $query = "SELECT email FROM users WHERE email='$email'";
+        $result = $conn->query($query);
+        
+        $query2 = "SELECT userName FROM users WHERE userName='$username'";
+        $result2 = $conn->query($query2);
+        
+        if($email== "" || $username == "" || $pass1 == "" || $pass2 == ""){
+            $emptyErr = "You left something empty. Fix that!";
+        }else if($pass1 != $pass2){
+            $passMatchErr = "Your passwords don't match. Fix that!";
+        }else if($result->num_rows >= 1){
+            $emailExErr = "Email already exists. Fix that!";
+        }else if($result2->num_rows >= 1){
+            $emailExErr = "Username already exists. Fix that!";
+        }else if(strlen($pass1) <= 8)
+        {
+            $passLenErr = "Your passwords must be 8 characters or more. Fix that!";
+        }else{
+            $q = "INSERT INTO users(userName, passWord, email) values ('$username', '$pass1', '$email')";
+            $res = mysqli_query($conn, $q);
+            if (!$res)
+            {
+		echo "<p>DB Crash Bro!</p>";
+            }
+            
+            echo "<p>Successfully added your new account</p>";
+                
+            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
+            $_SESSION['pwrd'] = $pass1;
+            
+            header('Location: index.php');
+                
+        }
+        
+    }
+        
+    ?>
+    
+    
+    
     <div class="container">
-
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">
@@ -123,7 +173,7 @@ session_start();
                     <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
                 </div>
                 <div class="col-md-4">
-                <form action="verify_account.php" method="post">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                     
                     <p>Email:
                         <br>
@@ -142,6 +192,13 @@ session_start();
                         <input type="text" id="password" name="password2" placeholder="Confirm Password" class="input-small">
                     </p>
                     <button type="submit" id="btnLogin" class="btn btn-default btn-block">Register</button>
+                    <?php 
+                    echo $emptyErr; 
+                    echo $emailErr;
+                    echo $passMatchErr;
+                    echo $emailExErr;
+                    echo $passLenErr;
+                    ?>
 
                 </div>
 

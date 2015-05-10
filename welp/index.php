@@ -232,16 +232,19 @@ session_start();
         </div>
 
 
-    <footer>
-        <div class="container">
+    <!--<footer>-->
+        <div class="box">
             <div class="row">
+                <hr class="visible-xs">
                 <div class="col-lg-12 text-center">
                     <p>Copyright &copy; Your Website 2014</p>
                     <img src="img/test2.jpg" height="250" width="250" >
                 </div>
+                
             </div>
         </div>
-    </footer>
+    <!--</footer>
+        
 
 
 

@@ -2,7 +2,6 @@
 include('connect.php');
 session_start();
 
-
 $e_error = false;
 $empty_error = false;
 $password_error = false;
@@ -82,7 +81,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL))
 	$q = "INSERT INTO users(userName,password, email) values ('$username', '$password', '$email')";
 	$res = mysqli_query($conn, $q);
 	if (!$res)
-    {
+        {
 		die('Invalid query: ' . mysqli_error($conn));
 	}
 	echo "<p>Successfully added your new account</p>";	
