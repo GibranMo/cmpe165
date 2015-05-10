@@ -85,10 +85,10 @@
                 </div>
                 <div class="col-md-4">
                     <p>Phone:
-                        <strong>123.456.7890</strong>
+                        <strong>415.317.5977</strong>
                     </p>
                     <p>Email:
-                        <strong><a href="mailto:name@example.com">name@example.com</a></strong>
+                        <strong><a href="mailto:name@example.com">welp@welp.com</a></strong>
                     </p>
                     <p>Address:
                         <strong>One Washington Square

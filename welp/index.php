@@ -78,30 +78,24 @@ session_start();
                     <li>
                         <a href="index.php">Home</a>
                     </li>
-
-                    <?php
-                    if (isset($_SESSION["pwrd"]) == false)
-                    {
-
-                        print "<li>";
-                            print "<a href=\"signup.php\">Signup</a> ";
-                        print "</li>";
-
-                    }
-
-                    ?>
-
+                    
                     <?php
                         
                         if (isset($_SESSION["pwrd"]) == false )
                         {
-                            print "<li>";
-                            print "<a data-placement=\"bottom\" data-toggle=\"popover2\" data-title=\"Login\" data-container=\"body\" type=\"button\" data-html=\"true\" href=\"login.php\" id=\"login\">Login</a>";
-                            print "</li>";
+                            print "<li class=\"dropdown pull-right\">";
+								print "<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">Login/Signup <b class=\"caret\"></b></a>";
+								print "<ul class=\"dropdown-menu\">";
+									print "<li><a href=\"signup.php\">Signup</a></li>";
+									print "<li><a href=\"login.php\">Login</a></li>";
+								print "</ul>";
+							print "</li>";
                             
                         }
                      
                     ?>
+
+                   
                      <li>
                         <a href="search.php">Advanced Search</a>
                     </li>
