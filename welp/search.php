@@ -61,12 +61,48 @@ session_start();
                     <li>
                         <a href="index.php">Home</a>
                     </li>
-                    <li>
-                        <a href="about.php">About</a>
+
+
+                     <li>
+                        <a href="search.php">Advanced Search</a>
                     </li>
-                    <li>
-                        <a href="contact.php">Contact</a>
+
+                    
+                        
+
+                    
+                     <li class="dropdown pull-right">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Resources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.php">About</a></li>
+                            <li><a href="contact.php">Contact</a></li>
+                            <!--<li><a href="signup.php">Sign Up</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <!--<li><a href="#">Log out</a></li>-->
+                        </ul>
                     </li>
+                    
+                    <?php
+                        
+                        if (isset($_SESSION["pwrd"]) == false )
+                        {
+                            print "<li class=\"dropdown pull-right\">";
+								print "<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">Login/Signup <b class=\"caret\"></b></a>";
+								print "<ul class=\"dropdown-menu\">";
+                                                                print "<li><a href=\"login.php\">Login</a></li>";
+								print "<li><a href=\"signup.php\">Signup</a></li>";
+								print "</ul>";
+							print "</li>";
+                            
+                        }else if(isset($_SESSION["pwrd"]))
+                            {
+                                print "<li>";
+                                    print "<a href=\"logout.php\">Logout</a>";
+                                print "</li>";
+                            }
+                     
+                    ?>
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
