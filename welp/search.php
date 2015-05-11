@@ -74,7 +74,7 @@ session_start();
         <!-- /.container -->
     </nav>
 
-    <div class="container">
+    <center> <div class="container">
 
         <div class="row">
             <div class="box">
@@ -306,7 +306,7 @@ session_start();
             </div>
         </div>
 
-    </div>
+    </div> <center/>
     <!-- /.container -->
 
     <footer>
