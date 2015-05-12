@@ -89,46 +89,53 @@
                 <div class="box">
                     <div class="col-lg-12">
                         <hr>
-                        <h2 class="intro-text text-center">Reviews
-                            <strong> And Comments </strong>
+                        <h2 class="intro-text text-center">Post your 
+                            <strong> review here </strong>
                         </h2>
                         <hr>
+                       <div class = "container">
+                    <center>  <div class = "container" class = "col-md-6">
+                       <form>
+                            <center>
+                            <p>
+                               Please rate:  
+                               <select name = "rating">
+                                    <option value="" selected disabled> <strong>Rating</strong></option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                   
+                                </select>
+                            </p>
+                            <center/>
+                            <textarea name="comment" cols="50" placeholder= "Comments" rows="10"></textarea>
+                           <button type="button" class="btn btn-default">Submit</button>
+                        </form>
                     </div>
-                </div>
+                      </div> <center/>
+                       
+                    </div>
+                     </div>
 
                 <div class="box">
                     <div class="col-lg-12">
                         <hr>
-                        <h2 class="intro-text text-center">Comment <strong>Below!</strong>
+                        <h2 class="intro-text text-center">Read 
+                            <strong> Reviews </strong>
                         </h2>
                         <hr>
                     </div>
 
-                    <h3>Rating
-                        <small> 
-                            <select>
-                                <option>1 - Poor</option>
-                                <option>2 - Okay</option>
-                                <option>3 - Good</option>
-                                <option>4 - Great</option>
-                                <option>5 - Epic</option>
-                            </select>
-                        </small>
-                        <br>
-                        <textarea style="width: 300px;" rows="7" >heasdllo
-                        </textarea>     
-                        <br>
-                        <input type="button" id="submit" value="submit">
-
-                    </h3>
+                   
                     <!--</ul>-->
-                </div>
+              
                 <ul class = "clearfix">
 
                     <div class="clearfix"></div>
             </div>
         </div>
-
 
         <!-- /.container -->
 
@@ -141,7 +148,9 @@
                 </div>
             </div>
         </footer>
+           
 
+    
         <!-- jQuery -->
         <script src="js/jquery.js"></script>
 
@@ -149,3 +158,5 @@
         <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
+
+
