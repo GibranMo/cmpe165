@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
+  `userID` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `userName` varchar(30) NOT NULL DEFAULT '',
   `passWord` varchar(30) DEFAULT NULL,
   `adminBoolean` tinyint(1) NOT NULL DEFAULT '0',
@@ -63,8 +64,6 @@ INSERT INTO `users` (`userName`, `passWord`, `adminBoolean`, `email`) VALUES
 --
 -- Indexes for table `users`
 --
-ALTER TABLE `users`
- ADD PRIMARY KEY (`userName`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

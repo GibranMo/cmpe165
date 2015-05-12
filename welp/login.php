@@ -128,14 +128,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $wrongErr = "Your email or password is not correct2. Fix that!";
     }else {
 
-        $query = "SELECT adminBoolean, userName, email FROM users WHERE email='$email' and passWord='$pass'"; 
+        $query = "SELECT adminBoolean, userName, email, userID FROM users WHERE email='$email' and passWord='$pass'"; 
         $result = $conn->query($query);
         $resultRow = $result->fetch_row();
         $_SESSION["isAdmin"] = $resultRow[0];
         $_SESSION["username"] = $resultRow[1];
         $_SESSION["email"] = $resultRow[2];
         $_SESSION["pwrd"] = $pass;
-
+        $_SESSION["userID"] = $resultRow[3];
         header('Location: index.php');
     }
 }
@@ -179,70 +179,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </form>
                         <div class="clearfix"></div>
                     </div>
-                </div>
-
-<?php
-//            function checkInfo($email, $pwrd)
-//            {
-//                include "connect.php";
-//                
-//                $email = mysqli_real_escape_string($conn, $email);
-//                
-//                $pwrd = mysqli_real_escape_string($conn, $pwrd);
-//                
-//                $query = "SELECT adminBoolean, userName, email FROM users WHERE email='$email' and passWord='$pwrd'";
-//                
-//                $result = $conn->query($query);
-//                
-//                if ($result->num_rows == 1)
-//                {
-//                    $resultRow = $result->fetch_row();
-//                    $_SESSION["isAdmin"] = $resultRow[0];
-//                    $_SESSION["username"] = $resultRow[1];
-//                    $_SESSION["email"] = $resultRow[2];
-//                    $_SESSION["pwrd"] = $pwrd;
-//
-//                    
-//                    return true;
-//                }
-//                
-//                else
-//                {
-//                    return false;
-//                }
-//            }
-//    
-//
-//    if (isset($_POST["email"]) && isset($_POST["pwrd"]))
-//    {
-//        
-//        if (checkInfo($_POST["email"], $_POST["pwrd"]))
-//        {
-//            header('Location: index.php');
-//        }
-//        
-//        else
-//        {
-//            print("<h3>Invalid login info!</h3>");
-//        }
-//        
-//    }
-?>
-
-
+            </div>
 
             </div>
             <!-- /.container -->
 
-            <footer>
-                <div class="box">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <p>Copyright &copy; Your Website 2014</p>
-                        </div>
-                    </div>
+            <div class="row">
+            <div class="box">
+                <div clas = "container"><center>
+                    <hr class="visible-xs">
+                        Copyright &copy; Your Website 2014
+                    </hr>
                 </div>
-            </footer>
+            </div>
+        </div>
 
             <!-- jQuery -->
             <script src="js/jquery.js"></script>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 10, 2015 at 09:49 PM
+-- Generation Time: May 12, 2015 at 03:55 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `restaurant`
+-- Table structure for table `Restaurant`
 --
 
-CREATE TABLE IF NOT EXISTS `restaurant` (
+CREATE TABLE IF NOT EXISTS `Restaurant` (
 `id` int(11) NOT NULL,
   `categoryID` int(11) NOT NULL,
   `name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
@@ -38,15 +38,15 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `foodtype` enum('American','Mexican','Japanese','Chinese','Indian','Other','Italian','French','Generic') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Generic',
   `tags` text COLLATE utf8_unicode_ci NOT NULL,
   `cost` int(11) NOT NULL,
-  `numReviews` int(11) NOT NULL,
-  `searchTag` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=1250 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `numreviews` int(11) NOT NULL,
+  `searchtag` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `restaurant`
+-- Dumping data for table `Restaurant`
 --
 
-INSERT INTO `restaurant` (`id`, `categoryID`, `name`, `address`, `rating`, `iconimage`, `city`, `placetype`, `foodtype`, `tags`, `cost`, `numReviews`, `searchTag`) VALUES
+INSERT INTO `Restaurant` (`id`, `categoryID`, `name`, `address`, `rating`, `iconimage`, `city`, `placetype`, `foodtype`, `tags`, `cost`, `numreviews`, `searchtag`) VALUES
 (1, 1, 'Fuji Sushi', '56 W Santa Clara St\r\nSan Jose, CA 95113\r\nPhone number (408) 298-3854', 5, 'fuji.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food, expensive', 4, 2, 'Fuji Sushi San Jose Japanese Restaurant sushi, food'),
 (2, 2, 'Kenji Sushi', '385 S Winchester Blvd\r\nSan Jose, CA 95128\r\nPhone number (408) 985-1889', 4, 'kenji.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food, cheap', 2, 4, 'Kenji Sushi San Jose Japanese Restaurant sushi, food'),
 (3, 3, 'Cha Cha Sushi', '547 W Capitol Expy\r\nSan Jose, CA 95136\r\nPhone number (408) 265-2416', 3, 'test2.jpg', 'San Jose', 'Restaurant', 'Japanese', 'sushi, food', 3, 1, 'Cha Cha Sushi San Jose Japanese Restaurant sushi, food'),
@@ -61,9 +61,9 @@ INSERT INTO `restaurant` (`id`, `categoryID`, `name`, `address`, `rating`, `icon
 --
 
 --
--- Indexes for table `restaurant`
+-- Indexes for table `Restaurant`
 --
-ALTER TABLE `restaurant`
+ALTER TABLE `Restaurant`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
 
 --
@@ -71,10 +71,10 @@ ALTER TABLE `restaurant`
 --
 
 --
--- AUTO_INCREMENT for table `restaurant`
+-- AUTO_INCREMENT for table `Restaurant`
 --
-ALTER TABLE `restaurant`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1250;
+ALTER TABLE `Restaurant`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

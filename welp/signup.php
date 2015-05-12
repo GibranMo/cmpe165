@@ -144,7 +144,16 @@ session_start();
             }
             
             echo "<p>Successfully added your new account</p>";
-                
+            
+            
+            $query = "SELECT userID FROM users WHERE email='$email'"; 
+        $result = $conn->query($query);
+        $resultRow = $result->fetch_row();
+      
+        $_SESSION["userID"] = $resultRow[0];
+            
+            
+            
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
             $_SESSION['pwrd'] = $pass1;
@@ -212,17 +221,15 @@ session_start();
     </div>
     <!-- /.container -->
 
-    <footer>
-        
-        <div class="box">
-            <div class="clearfix">
-                <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; Your Website 2014</p>
+    <div class="row">
+            <div class="box">
+                <div clas = "container"><center>
+                    <hr class="visible-xs">
+                        Copyright &copy; Your Website 2014
+                    </hr>
                 </div>
             </div>
         </div>
-          
-    </footer>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

@@ -233,11 +233,11 @@ session_start();
         
         <div class="row">
             <div class="box">
-                <hr class="visible-xs">
-                    <div class="col-md-4">
-                        <center>Copyright &copy; Your Website 2014</center>
-                    </div>
-                </hr>
+                <div clas = "container"><center>
+                    <hr class="visible-xs">
+                        Copyright &copy; Your Website 2014
+                    </hr>
+                </div>
             </div>
         </div>
         

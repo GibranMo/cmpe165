@@ -1,14 +1,22 @@
 <?php
     include('connect.php');
     session_start();
-
-    if (isset($_POST['submit'])) {
-
-
-
-
+    
+    $restID = 18;
+//    $restID = $_POST["restID"];
+    
+    $comment = $rating = "";
+    
+    #if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['submit'])){
+        echo "dos this work?";
+        $comment = $_POST['comment'];
+        $rating = $_POST['rating'];
+        
     $query="INSERT INTO Comment (userID, restaurantID, rating, comment)
-    VALUES ('".$_SESSION['username']."','".$_POST['restaurantid']."','".$_POST["rating"]."','".$_POST['comment']."')";
+    VALUES ('1','". $_SESSION["userID"] ."','" . $rating . "','" . $comment . "')";
+//    $query="INSERT INTO Comment (userID, restaurantID, rating, comment)
+//    VALUES ('" . $_SESSION['username'] . "','" . $_POST['restaurantid'] . "','" . $rating . "','" . $comment . "')";
 
     $result = mysqli_query($conn,$query);
 
@@ -18,7 +26,7 @@
     $selectresult = mysqli_query($conn,$selectquery);
 
     $row = mysqli_fetch_array($selectresult);
-    $rating = $_POST["rating"];
+    $rating = $rating;
     $numreviews = $row['numreviews'];
     $commentrating = $row['rating'];
     $newrating = round(($rating * ($numreviews/ ($numreviews+1))) + ($commentrating * (1 / ($numreviews +1))));
@@ -28,7 +36,7 @@
     $updatequery="UPDATE Restaurant SET numreviews ='".$newnumreviews."', rating = '".$newrating."' WHERE id = '1'";
 
     $updateresult = mysqli_query($conn,$updatequery);
-
+        header('Location: restaurant.php');
     }
     
 ?>
@@ -84,16 +92,52 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">Contact</a>
-                        </li>
-                    </ul>
+                    <li>
+                        <a href="index.php">Home</a>
+                    </li>
+
+
+                     <li>
+                        <a href="search.php">Advanced Search</a>
+                    </li>
+
+                    
+                        
+
+                    
+                     <li class="dropdown pull-right">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Resources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.php">About</a></li>
+                            <li><a href="contact.php">Contact</a></li>
+                            <!--<li><a href="signup.php">Sign Up</a></li>-->
+                            <!--<li class="divider"></li>-->
+                            <!--<li><a href="#">Log out</a></li>-->
+                        </ul>
+                    </li>
+                    
+                    <?php
+                        
+                        if (isset($_SESSION["pwrd"]) == false )
+                        {
+                            print "<li class=\"dropdown pull-right\">";
+								print "<a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">Login/Signup <b class=\"caret\"></b></a>";
+								print "<ul class=\"dropdown-menu\">";
+                                                                print "<li><a href=\"login.php\">Login</a></li>";
+								print "<li><a href=\"signup.php\">Signup</a></li>";
+								print "</ul>";
+							print "</li>";
+                            
+                        }else if(isset($_SESSION["pwrd"]))
+                            {
+                                print "<li>";
+                                    print "<a href=\"logout.php\">Logout</a>";
+                                print "</li>";
+                            }
+                     
+                    ?>
+                    
+                </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -114,11 +158,18 @@
                     <div class="col-md-6">
                         <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
                     </div>
-                    <div class="col-md-6"> 
+                    <div class="col-md-6">       <!-- Insert php code -->
+
+                    <p>Name:</p>
+                    <p>Address:</p>
+                    <p>City:</p>
+                    <p>Rating:</p>
+                    <p>Price:</p>
                     </div>
                     <div class="clearfix"></div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="box">
                     <div class="col-lg-12">
@@ -127,25 +178,47 @@
                             <strong> review here </strong>
                         </h2>
                         <hr>
-                       <div class = "container">
+                       <div class = "container">  <!-- Insert php code -->
                     <center>  <div class = "container" class = "col-md-6">
-                       <form>
+                       <form  method="post">
                             <center>
                             <p>
                                Please rate:  
                                <select name = "rating">
                                     <option value="" selected disabled> <strong>Rating</strong></option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
-                                    <option value="">5</option>
-                                   
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    
                                 </select>
                             </p>
                             <center/>
                             <textarea name="comment" cols="50" placeholder= "Comments" rows="10"></textarea>
-                           <button type="button" class="btn btn-default">Submit</button>
+                            
+                            
+                            
+                            
+                            <?php
+                                if (isset($_SESSION["pwrd"]) == false) {
+                                    print "<br>";
+                                    print "<p>Log in to comment noob!</p>";
+                                   
+                                } else if (isset($_SESSION["pwrd"])) {
+                                    print "<br>";
+                                    print "<input type=\"submit\" name=\"submit\" value=\"submitComment\"></input>";
+                                }
+                            ?>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                          
                         </form>
                     </div>
                       </div> <center/>
@@ -153,7 +226,7 @@
                     </div>
                      </div>
 
-                <div class="box">
+                <div class="box">  <!-- Insert php code -->
                     <div class="col-lg-12">
                         <hr>
                         <h2 class="intro-text text-center">Read 
@@ -161,8 +234,50 @@
                         </h2>
                         <hr>
                     </div>
-
-                   
+                    
+                    
+                    
+                    <?php
+                    $query = "SELECT userID, comment, rating FROM comment WHERE restaurantID = '$restID'"; 
+                    $result = $conn->query($query);
+                    $resultRow = $result->fetch_row();
+                    
+                    $restaurantRating = [ 
+                        1 => "<img class=\"img-responsive img-border-left\" src=\"img/r1.png\">",
+                        2 => "<img class=\"img-responsive img-border-left\" src=\"img/r2.png\">",
+                        3 => "<img class=\"img-responsive img-border-left\" src=\"img/r3.png\">",
+                        4 => "<img class=\"img-responsive img-border-left\" src=\"img/r4.png\">",
+                        5 => "<img class=\"img-responsive img-border-left\" src=\"img/r5.png\">"];
+                    foreach($result as $thing){
+                        $rating = $thing["rating"];
+                        $userID = $thing["userID"];
+                        $comment = $thing["comment"];
+                        
+                        
+                        $query1 = "SELECT userName FROM users WHERE userID = '$userID'"; 
+                        $result1 = $conn->query($query1);
+                        $resultRow1 = $result1->fetch_row();
+                        $username = $resultRow1[0];
+                        
+                        
+                        
+                        
+                        print "<div class = \"container\"><center>";
+                        print "<p><b>Username:</b> " . $username . "<br>";
+                        print "<b>Rating:</b> " . $restaurantRating[$rating];
+                        print "<b>Comment:</b> " . $comment . "</p>";
+                        print "<br>";
+                        print "</div><center/>";
+                        
+                        
+                        
+                        
+                        
+                    }
+                    
+        
+                    
+                    ?> 
                     <!--</ul>-->
               
                 <ul class = "clearfix">
@@ -175,14 +290,13 @@
 
         <div class="row">
             <div class="box">
-                <hr class="visible-xs">
-                    <div class="col-md-4">
-                        <center>Copyright &copy; Your Website 2014</center>
-                    </div>
-                </hr>
+                <div clas = "container"><center>
+                    <hr class="visible-xs">
+                        Copyright &copy; Your Website 2014
+                    </hr>
+                </div>
             </div>
         </div>
-           
 
     
         <!-- jQuery -->
