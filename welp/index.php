@@ -48,7 +48,6 @@ session_start();
         
         if(isset($_SESSION["pwrd"])) 
         {
-            
             $username = "Welcome back, ".$_SESSION["username"];
           print  "<div class=\"address-bar\">".$username."</div>";
           print "<br>";
@@ -231,19 +230,19 @@ session_start();
             </div>
         </div>
 
-
-    <!--<footer>-->
-        <div class="box">
-            <div class="row">
+        
+        <div class="row">
+            <div class="box">
                 <hr class="visible-xs">
-                <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; Your Website 2014</p>
-                    <img src="img/test2.jpg" height="250" width="250" >
-                </div>
-                
+                    <div class="col-md-4">
+                        <center>Copyright &copy; Your Website 2014</center>
+                    </div>
+                </hr>
             </div>
         </div>
-    <!--</footer>
+        
+  
+  
         
 
 
