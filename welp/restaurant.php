@@ -1,3 +1,37 @@
+<?php
+    include('connect.php');
+    session_start();
+
+    if (isset($_POST['submit'])) {
+
+
+
+
+    $query="INSERT INTO Comment (userID, restaurantID, rating, comment)
+    VALUES ('".$_SESSION['username']."','".$_POST['restaurantid']."','".$_POST["rating"]."','".$_POST['comment']."')";
+
+    $result = mysqli_query($conn,$query);
+
+
+    $selectquery = "SELECT numreviews, rating from Restaurant WHERE id='1'";
+
+    $selectresult = mysqli_query($conn,$selectquery);
+
+    $row = mysqli_fetch_array($selectresult);
+    $rating = $_POST["rating"];
+    $numreviews = $row['numreviews'];
+    $commentrating = $row['rating'];
+    $newrating = round(($rating * ($numreviews/ ($numreviews+1))) + ($commentrating * (1 / ($numreviews +1))));
+    
+    $newnumreviews = $numreviews + 1;
+
+    $updatequery="UPDATE Restaurant SET numreviews ='".$newnumreviews."', rating = '".$newrating."' WHERE id = '1'";
+
+    $updateresult = mysqli_query($conn,$updatequery);
+
+    }
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -139,15 +173,15 @@
 
         <!-- /.container -->
 
-        <footer>
+        <div class="row">
             <div class="box">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <p>Copyright &copy; Your Website 2014</p>
+                <hr class="visible-xs">
+                    <div class="col-md-4">
+                        <center>Copyright &copy; Your Website 2014</center>
                     </div>
-                </div>
+                </hr>
             </div>
-        </footer>
+        </div>
            
 
     
