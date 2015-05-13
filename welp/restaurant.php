@@ -5,6 +5,19 @@
     
     
     $comment = $rating = "";
+    $restaurantRating = [ 
+                        1 => "<img class=\"img-responsive img-border-left\" src=\"img/r1.png\">",
+                        2 => "<img class=\"img-responsive img-border-left\" src=\"img/r2.png\">",
+                        3 => "<img class=\"img-responsive img-border-left\" src=\"img/r3.png\">",
+                        4 => "<img class=\"img-responsive img-border-left\" src=\"img/r4.png\">",
+                        5 => "<img class=\"img-responsive img-border-left\" src=\"img/r5.png\">"];
+    
+    $restaurantPrice = [ 
+                        1 => "$",
+                        2 => "$$",
+                        3 => "$$$",
+                        4 => "$$$$",
+                        5 => "$$$$$"];
     
     #if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['submit'])){
@@ -184,8 +197,8 @@
                     <p><b>Name:</b> <?php echo $name?></p>
                     <p><b>Address:</b> <?php echo $address?></p>
                     <p><b>City:</b> <?php echo $city?></p>
-                    <p><b>Rating:</b> <?php echo $rating?></p>
-                    <p><b>Price:</b> <?php echo $price?></p>
+                    <p><b>Rating:</b> <?php echo $restaurantRating[$rating]?></p>
+                    <p><b>Price:</b> <?php echo $restaurantPrice[$price]?></p>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -261,15 +274,8 @@
                     <?php
                     
                  
-                    $query = "SELECT userID, comment, rating FROM comment WHERE restaurantID = '$restID'"; 
+                    $query = "SELECT userID, comment, rating FROM comment WHERE restaurantID = $restID"; 
                     $result = $conn->query($query);
-                    
-                    $restaurantRating = [ 
-                        1 => "<img class=\"img-responsive img-border-left\" src=\"img/r1.png\">",
-                        2 => "<img class=\"img-responsive img-border-left\" src=\"img/r2.png\">",
-                        3 => "<img class=\"img-responsive img-border-left\" src=\"img/r3.png\">",
-                        4 => "<img class=\"img-responsive img-border-left\" src=\"img/r4.png\">",
-                        5 => "<img class=\"img-responsive img-border-left\" src=\"img/r5.png\">"];
                     
                     if ($result->num_rows > 0) {
                                 while ($resultRow = $result->fetch_assoc())
@@ -291,39 +297,6 @@
                                     print "</div><center/>";
                                 }
                     }
-//                    $resultRow = $result->fetch_row();
-                    
-                    
-                    
-//                    foreach($result as $thing){
-//                        $rating = $thing["rating"];
-//                        $userID = $thing["userID"];
-//                        $comment = $thing["comment"];
-//                        
-//                        
-//                        $query1 = "SELECT userName FROM users WHERE userID = '$userID'"; 
-//                        $result1 = $conn->query($query1);
-//                        $resultRow1 = $result1->fetch_row();
-//                        $username = $resultRow1[0];
-//                        
-//                        
-//                        
-//                        
-//                        print "<div class = \"container\"><center>";
-//                        print "<p><b>Username:</b> " . $username . "<br>";
-//                        print "<b>Rating:</b> " . $restaurantRating[$rating];
-//                        print "<b>Comment:</b> " . $comment . "</p>";
-//                        print "<br>";
-//                        print "</div><center/>";
-//                        }
-                        
-                        
-                        
-                        
-                    
-                    
-        
-                    
                     ?> 
                     <!--</ul>-->
               
