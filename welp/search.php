@@ -212,7 +212,7 @@ session_start();
 
                                 
 
-                                $sql = "SELECT iconimage, name, address, rating, city, placetype, cost, tags FROM restaurant";
+                                $sql = "SELECT id, iconimage, name, address, rating, city, placetype, cost, tags FROM restaurant";
                                 $counter = 0;
                                 if (!empty($_POST['keyword']))
                                 { 
@@ -231,10 +231,10 @@ session_start();
                                         if (!empty($term)) 
                                         {
         
-                                            $searchTermBits[] = "searchTag LIKE '%$term%'";
+                                            $searchTermBits[] = "searchtag LIKE '%$term%'";
                                         }
 
-                                        $sql = "SELECT iconimage, name, address, rating, city, placetype, cost, tags FROM restaurant WHERE ".implode(' OR ', $searchTermBits);
+                                        $sql = "SELECT id, iconimage, name, address, rating, city, placetype, cost, tags FROM restaurant WHERE ".implode(' OR ', $searchTermBits);
                                         
                                     }
                                     
@@ -295,7 +295,7 @@ session_start();
                                                 else if ($rating == 6)
                                                 {
                                                     //calculate above average number of reviews
-                                                    $query = "SELECT numReviews FROM restaurant";
+                                                    $query = "SELECT numreviews FROM restaurant";
 
                                                     $rcontainer = $conn->query($query);
 
@@ -305,7 +305,7 @@ session_start();
                                                         $sum = 0;
                                                         while ($row1 = $rcontainer->fetch_assoc())
                                                         {
-                                                            $num = $row1['numReviews'];
+                                                            $num = $row1['numreviews'];
                                                             $sum = $sum + $num;
 
 
@@ -321,12 +321,12 @@ session_start();
 
                                                     if ($counter > 0)
                                                     {
-                                                        $subquery = " AND numReviews > '$bottomAvg' ";
+                                                        $subquery = " AND numreviews > '$bottomAvg' ";
 
                                                     }
                                                     else
                                                     {
-                                                        $subquery = " WHERE numReviews > '$bottomAvg' ";
+                                                        $subquery = " WHERE numreviews > '$bottomAvg' ";
                                                     }
 
                                                 }
@@ -334,6 +334,9 @@ session_start();
                                                     $sql = $sql.$subquery;
                                                     $counter++;
                                             }
+
+                                    
+
 
 
                                     //}/* else isset($_POST['keyword'])*/  
@@ -343,23 +346,43 @@ session_start();
                                     echo "<br>";
                                     if ($result2->num_rows > 0)
                                     {
+
                                         while ($row = $result2->fetch_assoc())
                                         {
+                                            /*
+                                                Prep all the variables
+                                            */
+                                            $id = $row['id'];
                                             $restname = $row['name'];
+                                            $city = $row['city'];
+                                            $tagsText = $row['tags'];
+                                            $price = $row['cost'];
+                                            $rating = $row['rating'];
+                                            $image = $row['iconimage'];
+
                                         
                                                 echo "<br>";
                                             
-                                            
-                                                    echo "<h2>";
-                                                        echo "<strong>".$restname."</strong>";
-                                                    echo "</h2>";
+                                                    echo "<form method=\"post\" action=\"rrr.php\" id=\"form1\" name=\"fuck\">";
+
+                                                        echo "<input type=\"hidden\" name=\"frestname\" value= $restname />";
+                                                        echo "<input type=\"hidden\" name=\"city\" value=$city />";
+                                                        echo "<input type=\"hidden\" name=\"$tagsText\" value=\"$tagsText\" />";
+                                                        echo "<input type=\"hidden\" name=\"price\" value=\"$price\" />";
+                                                        echo "<input type=\"hidden\" name=\"rating\" value=\"$rating\" />";
+                                                        echo "<input type=\"hidden\" name=\"image\" value=\"$image\" />";
+                                                        //echo "<a href=\"{$row['videolink']}\"><img src=\"{$row['iconimage']}\" height=\"100\" width=\"160\"></a>";
+
+                                                        echo "<h2>";
+                                                        echo "<a href=\"rrr.php\" onclick=\"document.getElementById('form1').submit(); return false;\">$restname</a>";
                                                         echo "<br>";
-                                                        echo "<img src=\"img/{$row['iconimage']}\" height=\"250\" width=\"250\">";
+                                                        echo "<a href=\"rrr.php\"><img src=\"img/$image\" height=\"250\" width=\"250\"> </a>";
+                                                        echo "</h2>";
 
+                                                        echo "</form>";
+                                                       
+                                                        echo "<br>";
 
-                                                    $city = $row['city'];
-
-                                                    $tagsText = $row['tags'];
 
                                                     echo "<h2>City: ";
                                                         echo "<strong> $city</strong>";
@@ -393,7 +416,13 @@ session_start();
 
                                                     echo "<br>";
                                                     echo "<br>";
-                                                    
+
+                                                    //echo " <img src = \"http://maps.google.com/maps/api/staticmap?scale=2&center=37.431847%2C-121.908976&language=en&zoom=15&markers=scale%3A2%7Cshadow%3Afalse%7Cicon%3Ahttp%3A%2F%2Fyelp-images.s3.amazonaws.com%2Fassets%2Fmap-markers%2Fannotation_64x86.png%7C37.431847%2C-121.908976&client=gme-yelp&sensor=false&size=286x135&signature=500CGfAyovibZTg0QQZvfeQsCbw=\" height=\"280\" width=\"380\">";
+
+                                                    echo "<br>";
+                                                    echo "<br>";
+
+
                                                     echo "<div class=\"text-center\">";
                                                     echo "<p>";
                                                         echo $row["address"];
@@ -404,10 +433,11 @@ session_start();
                                         }
                             }
                             else
-                                        echo "<br>";
+                            {            echo "<br>";
                                         echo "<h2 class=\"intro-text text-center\">";
                                             echo "<strong>No results found </strong>";
                                         echo "</h2>";
+                            }
                                         
                         }
                         
