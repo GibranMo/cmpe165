@@ -286,8 +286,14 @@
                                     
                                     $query1 = "SELECT userName FROM users WHERE userID = '$userID'"; 
                                     $result1 = $conn->query($query1);
-                                    $resultRow1 = $result1->fetch_row();
-                                    $username = $resultRow1[0];
+                                    
+                                    if ($result1->num_rows > 0) {
+                                        while ($resultRow1 = $result1->fetch_assoc()){
+                                            $username = $resultRow1[0];
+                                        }
+                                    } //asasas
+                                    
+                                    
                                     
                                     print "<div class = \"container\"><center>";
                                     print "<p><b>Username:</b> " . $username . "<br>";
