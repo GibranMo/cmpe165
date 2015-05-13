@@ -188,7 +188,24 @@
                         <hr>
                     </div>
                     <div class="col-md-6">
-                        <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
+                        
+                        <?php
+                            $image = "";
+                            $query3 = "SELECT iconimage FROM restaurant WHERE id = $restID"; 
+                            $result3 = $conn->query($query3);
+                            
+                            if ($result3->num_rows > 0) {
+                                while ($resultRow3 = $result3->fetch_assoc()){
+                                    $image = $resultRow3['iconimage'];
+                                }
+                            }
+                       
+                            print "<center><img class=\"img-responsive img-border-left\" src=\"img/$image\" alt=\"\" height=\"250\" width=\"250\><center/>";
+                        ?>
+                        
+                        
+                        
+                        
                     </div>
                     <div class="col-md-6">       <!-- Insert php code -->
 
