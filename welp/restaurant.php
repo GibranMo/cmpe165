@@ -159,19 +159,33 @@
                     <div class="col-md-6">       <!-- Insert php code -->
 
                         <?php
-                            $query2 = "SELECT name, address, city, rating, price FROM restaurant WHERE id = $restID"; 
+                        echo ">>$restID"."<br>";
+                        $fuck = "Fuji Sushi";
+                            $query2 = "SELECT name, address, city, rating, cost FROM restaurant WHERE name = $restID"; 
                             $result2 = $conn->query($query2);
-                            $resultRow2 = $result2->fetch_row();
-                            $name = $resultRow2['name'];
                             
-                            $address = $resultRow2['address'];
-                            $city = $resultRow2['city'];
-                            $rating = $resultRow2['rating'];
-                            $price = $resultRow2['price'];
-                            
-                        
+                            if ($result2->num_rows > 0) {
+
+                                while ($resultRow2 = $result2->fetch_assoc())
+                                {
+                                
+                                    $resultRow2 = $result2->fetch_row();
+                                    $name = $resultRow2['name'];
+                                    echo $resultRow2['name'];
+                                    $address = $resultRow2['address'];
+                                    $city = $resultRow2['city'];
+                                    $rating = $resultRow2['rating'];
+                                    $price = $resultRow2['price'];
+                                    echo "<p>Name: $name </p>";
+
+
+                                }   
+                            }
+
+                            $test = "fd";
+                            echo "dfdf $test"."<br>";
                         ?>
-                        
+                       
                         
                     <p>Name: <?php echo $name?></p>
                     <p>Address: <?php echo $address?></p>

@@ -142,7 +142,7 @@ session_start();
                 </p>
                  <p>
                    Type: 
-                   <select name="food">
+                   <select name="foodtype">
                         <option value="" selected disabled> <strong>Please select</strong></option>
                         <option value="Indian">Indian</option>
                         <option value="Mexican">Mexican</option>
@@ -214,7 +214,7 @@ session_start();
 
                                 $sql = "SELECT id, iconimage, name, address, rating, city, placetype, cost, tags FROM restaurant";
                                 $counter = 0;
-                                if (!empty($_POST['keyword']))
+                                if (!empty($_POST['keyword'])) //search by keyword input was provided
                                 { 
                                     
                                     
@@ -242,8 +242,23 @@ session_start();
 
 
                                 }
-                               
-                                        
+                                            
+                                            if (isset($_POST['foodtype'])) 
+                                            {
+                                                $foodtype= $_POST['foodtype'];
+
+                                                if ($counter > 0)
+                                                {
+                                                    $subquery = " AND foodtype = '$foodtype' ";
+                                                }
+                                                else
+                                                    $subquery = " WHERE foodtype = '$foodtype' ";
+
+                                                $sql = $sql.$subquery;
+                                                $counter++;
+
+                                            }
+                                            
                                             if (isset($_POST['price'])) 
                                             {
                                                 $price = $_POST['price'];
