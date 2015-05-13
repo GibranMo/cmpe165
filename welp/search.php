@@ -362,22 +362,14 @@ session_start();
 
                                         
                                                 echo "<br>";
-                                            
-                                                    echo "<form method=\"post\" action=\"rrr.php\" id=\"form1\" name=\"fuck\">";
-
-                                                        echo "<input type=\"hidden\" name=\"frestname\" value= $restname />";
-                                                        echo "<input type=\"hidden\" name=\"city\" value=$city />";
-                                                        echo "<input type=\"hidden\" name=\"$tagsText\" value=\"$tagsText\" />";
-                                                        echo "<input type=\"hidden\" name=\"price\" value=\"$price\" />";
-                                                        echo "<input type=\"hidden\" name=\"rating\" value=\"$rating\" />";
-                                                        echo "<input type=\"hidden\" name=\"image\" value=\"$image\" />";
-                                                        echo "<input type=\"hidden\" name=\"image\" value=\"$id\" />";
+                                               
+//                                                        
                                                         //echo "<a href=\"{$row['videolink']}\"><img src=\"{$row['iconimage']}\" height=\"100\" width=\"160\"></a>";
-
+                                                        
                                                         echo "<h2>";
-                                                        echo "<a href=\"rrr.php\" onclick=\"document.getElementById('form1').submit(); return false;\">$restname</a>";
+                                                        echo "<a href=\"restaurant.php?id=$id\">$restname</a>";
                                                         echo "<br>";
-                                                        echo "<a href=\"rrr.php\"><img src=\"img/$image\" height=\"250\" width=\"250\"> </a>";
+                                                        echo "<a href=\"restaurant.php?id=$id\"><img src=\"img/$image\" height=\"250\" width=\"250\"> </a>";
                                                         echo "</h2>";
 
                                                         echo "</form>";

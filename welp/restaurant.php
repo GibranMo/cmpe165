@@ -1,9 +1,8 @@
 <?php
     include('connect.php');
     session_start();
+    $restID = $_GET["id"];
     
-    $restID = 18;
-//    $restID = $_POST["restID"];
     
     $comment = $rating = "";
     
@@ -12,16 +11,15 @@
         echo "dos this work?";
         $comment = $_POST['comment'];
         $rating = $_POST['rating'];
+        $userID = $_SESSION["userID"];
         
     $query="INSERT INTO Comment (userID, restaurantID, rating, comment)
-    VALUES ('1','". $_SESSION["userID"] ."','" . $rating . "','" . $comment . "')";
-//    $query="INSERT INTO Comment (userID, restaurantID, rating, comment)
-//    VALUES ('" . $_SESSION['username'] . "','" . $_POST['restaurantid'] . "','" . $rating . "','" . $comment . "')";
+    VALUES ('" . $userID . "','" . $restID . "','" . $rating . "','" . $comment . "')";
 
     $result = mysqli_query($conn,$query);
 
 
-    $selectquery = "SELECT numreviews, rating from Restaurant WHERE id='1'";
+    $selectquery = "SELECT numreviews, rating from Restaurant WHERE id='" . $restID . "'";
 
     $selectresult = mysqli_query($conn,$selectquery);
 
@@ -160,11 +158,26 @@
                     </div>
                     <div class="col-md-6">       <!-- Insert php code -->
 
-                    <p>Name:</p>
-                    <p>Address:</p>
-                    <p>City:</p>
-                    <p>Rating:</p>
-                    <p>Price:</p>
+                        <?php
+                            $query2 = "SELECT name, address, city, rating, price FROM restaurant WHERE id = $restID"; 
+                            $result2 = $conn->query($query2);
+                            $resultRow2 = $result2->fetch_row();
+                            $name = $resultRow2['name'];
+                            
+                            $address = $resultRow2['address'];
+                            $city = $resultRow2['city'];
+                            $rating = $resultRow2['rating'];
+                            $price = $resultRow2['price'];
+                            
+                        
+                        ?>
+                        
+                        
+                    <p>Name: <?php echo $name?></p>
+                    <p>Address: <?php echo $address?></p>
+                    <p>City: <?php echo $city?></p>
+                    <p>Rating: <?php echo $rating?></p>
+                    <p>Price: <?php echo $price?></p>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -238,6 +251,8 @@
                     
                     
                     <?php
+                    
+                 
                     $query = "SELECT userID, comment, rating FROM comment WHERE restaurantID = '$restID'"; 
                     $result = $conn->query($query);
                     $resultRow = $result->fetch_row();
