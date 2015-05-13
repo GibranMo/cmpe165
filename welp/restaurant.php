@@ -1,7 +1,9 @@
 <?php
     include('connect.php');
     session_start();
+    
     $restID = $_GET["id"];
+    
     
     
     $comment = $rating = "";
@@ -21,7 +23,6 @@
     
     #if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['submit'])){
-        echo "dos this work?";
         $comment = $_POST['comment'];
         $rating = $_POST['rating'];
         $userID = $_SESSION["userID"];
@@ -44,10 +45,10 @@
     
     $newnumreviews = $numreviews + 1;
 
-    $updatequery="UPDATE Restaurant SET numreviews ='".$newnumreviews."', rating = '".$newrating."' WHERE id = '1'";
+    $updatequery="UPDATE Restaurant SET numreviews ='".$newnumreviews."', rating = '".$newrating."' WHERE id = $restID";
 
     $updateresult = mysqli_query($conn,$updatequery);
-        header('Location: restaurant.php');
+        header("Location: restaurant.php?id=$restID");
     }
     
 ?>
@@ -227,7 +228,9 @@
                                     <option value="5">5</option>
                                     
                                 </select>
+                               
                             </p>
+                            <input type="hidden" name="id" value="1">
                             <center/>
                             <textarea name="comment" cols="50" placeholder= "Comments" rows="10"></textarea>
                             
@@ -286,7 +289,6 @@
                                     
                                     $query1 = "SELECT userName FROM users WHERE userID = $userID"; 
                                     $result1 = $conn->query($query1);
-                                    echo $userID;
                                     if ($result1->num_rows > 0) {
                                         while ($resultRow1 = $result1->fetch_assoc()){
                                             $username = $resultRow1["userName"];
