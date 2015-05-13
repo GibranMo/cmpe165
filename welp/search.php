@@ -371,6 +371,7 @@ session_start();
                                                         echo "<input type=\"hidden\" name=\"price\" value=\"$price\" />";
                                                         echo "<input type=\"hidden\" name=\"rating\" value=\"$rating\" />";
                                                         echo "<input type=\"hidden\" name=\"image\" value=\"$image\" />";
+                                                        echo "<input type=\"hidden\" name=\"image\" value=\"$id\" />";
                                                         //echo "<a href=\"{$row['videolink']}\"><img src=\"{$row['iconimage']}\" height=\"100\" width=\"160\"></a>";
 
                                                         echo "<h2>";
