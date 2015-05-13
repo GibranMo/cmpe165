@@ -116,7 +116,7 @@ session_start();
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">About
+                    <h2 class="intro-text text-center">Search
                         <strong>Welp</strong>
                     </h2>
                     <hr>
@@ -460,15 +460,15 @@ session_start();
     </div> <center/>
     <!-- /.container -->
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; Your Website 2014</p>
+    <div class="row">
+            <div class="box">
+                <div clas = "container"><center>
+                    <hr class="visible-xs">
+                        Copyright &copy; Your Website 2014
+                    </hr>
                 </div>
             </div>
         </div>
-    </footer>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

@@ -1,9 +1,8 @@
 <?php
     include('connect.php');
     session_start();
-    
+    $avgrating = "nothing";
     $restID = $_GET["id"];
-    
     
     
     $comment = $rating = "";
@@ -21,36 +20,42 @@
                         4 => "$$$$",
                         5 => "$$$$$"];
     
-    #if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     if (isset($_POST['submit'])){
         $comment = $_POST['comment'];
-        $rating = $_POST['rating'];
+        $newrating = $_POST['rating'];
         $userID = $_SESSION["userID"];
         
     $query="INSERT INTO Comment (userID, restaurantID, rating, comment)
-    VALUES ('" . $userID . "','" . $restID . "','" . $rating . "','" . $comment . "')";
+    VALUES ('" . $userID . "','" . $restID . "','" . $newrating . "','" . $comment . "')";
+    $insert = $conn->query($query);
+//    $result = mysqli_query($conn,$query);
 
-    $result = mysqli_query($conn,$query);
-
-
+//    $selectquery = "SELECT numreviews, rating from Restaurant WHERE id='" . $restID . "'";
     $selectquery = "SELECT numreviews, rating from Restaurant WHERE id='" . $restID . "'";
+    $result4 = $conn->query($selectquery);
+                            
+    $numreviews = $rating = "";
+    if ($result4->num_rows > 0) {
+        while ($resultRow4 = $result4->fetch_assoc()){
+           $numreviews = $resultRow4['numreviews'];
+           $currentrating = $resultRow4['rating'];
 
-    $selectresult = mysqli_query($conn,$selectquery);
-
-    $row = mysqli_fetch_array($selectresult);
-    $rating = $rating;
-    $numreviews = $row['numreviews'];
-    $commentrating = $row['rating'];
-    $newrating = round(($rating * ($numreviews/ ($numreviews+1))) + ($commentrating * (1 / ($numreviews +1))));
-    
+        }
+    }
     $newnumreviews = $numreviews + 1;
+    
+    
+    $avgrating = round(($currentrating * ($numreviews/ ($newnumreviews))) + ($newrating * (1 / ($newnumreviews))));
+    
 
-    $updatequery="UPDATE Restaurant SET numreviews ='".$newnumreviews."', rating = '".$newrating."' WHERE id = $restID";
+    $updatequery="UPDATE restaurant SET numreviews =$newnumreviews, rating = $avgrating WHERE id = $restID";
 
     $updateresult = mysqli_query($conn,$updatequery);
         header("Location: restaurant.php?id=$restID");
     }
-    
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,6 +111,7 @@
                     <ul class="nav navbar-nav">
                     <li>
                         <a href="index.php">Home</a>
+                        
                     </li>
 
 
@@ -200,14 +206,15 @@
                                 }
                             }
                        
-                            print "<center><img class=\"img-responsive img-border-left\" src=\"img/$image\" alt=\"\" height=\"250\" width=\"250\><center/>";
+                            print "<img class=\"img-responsive img-border-left\" src=\"img/$image\" alt=\"\" height=\"250\" width=\"250\>";
                         ?>
                         
                         
                         
                         
+                        <!--<img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">-->
                     </div>
-                    <div class="col-md-6">       <!-- Insert php code -->
+                    <div class="col-md-6">     
 
                         
                        
@@ -288,7 +295,7 @@
                         </h2>
                         <hr>
                     </div>
-                    
+                   
                     
                     
                     <?php
@@ -323,6 +330,7 @@
                                 }
                     }
                     ?> 
+                    
                     <!--</ul>-->
               
                 <ul class = "clearfix">
@@ -338,6 +346,7 @@
                 <div clas = "container"><center>
                     <hr class="visible-xs">
                         Copyright &copy; Your Website 2014
+                        
                     </hr>
                 </div>
             </div>

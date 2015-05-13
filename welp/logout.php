@@ -4,12 +4,13 @@
 	session_unset();
 	
 	session_destroy();
+        header('Location: index.php')
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" http-equiv="refresh" content="3;url=./index.php">
+<!--<meta charset="UTF-8" http-equiv="refresh" content="3;url=./index.php">-->
 <title>Logout</title>
 </head>
 <body>

@@ -123,9 +123,9 @@ session_start();
                     <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
                 </div>
                 <div class="col-md-6">
-                    <p>This is a great place to introduce your company or project and describe what you do.</p>
-                    <p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.</p>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    <br>
+                    <p>Welp offers an exciting and easy way to search for restaurants in your area and surrounding areas, review and rate them with your honest opinions about a business, and read reviews posted by other users.</p>
+                    <p>The purpose of Welp is to assist users in finding what they like and offering them the best results that suit their interest. </p>
                 </div>
                 <div class="clearfix"></div>
             </div>
