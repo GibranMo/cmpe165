@@ -143,22 +143,7 @@
         </nav>
 
         <div class="container">
-
-            <div class="row">
-                <div class="box">
-                    <div class="col-lg-12">
-                        <hr>
-                        <h2 class="intro-text text-center">Joe's
-                            <strong>Favorites</strong>
-                        </h2>
-                        <hr>
-                    </div>
-                    <div class="col-md-6">
-                        <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
-                    </div>
-                    <div class="col-md-6">       <!-- Insert php code -->
-
-                        <?php
+            <?php
                         $name = $address = $city = $rating = $price = "";
                         
                             $query2 = "SELECT name, address, city, rating, cost FROM restaurant WHERE id = $restID"; 
@@ -179,13 +164,28 @@
                             }
 
                         ?>
+            <div class="row">
+                <div class="box">
+                    <div class="col-lg-12">
+                        <hr>
+                        <h2 class="intro-text text-center"><strong><?php echo $name?></strong>
+                            
+                        </h2>
+                        <hr>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="img-responsive img-border-left" src="img/slide-2.jpg" alt="">
+                    </div>
+                    <div class="col-md-6">       <!-- Insert php code -->
+
+                        
                        
                         
-                    <p>Name: <?php echo $name?></p>
-                    <p>Address: <?php echo $address?></p>
-                    <p>City: <?php echo $city?></p>
-                    <p>Rating: <?php echo $rating?></p>
-                    <p>Price: <?php echo $price?></p>
+                    <p><b>Name:</b> <?php echo $name?></p>
+                    <p><b>Address:</b> <?php echo $address?></p>
+                    <p><b>City:</b> <?php echo $city?></p>
+                    <p><b>Rating:</b> <?php echo $rating?></p>
+                    <p><b>Price:</b> <?php echo $price?></p>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -263,7 +263,6 @@
                  
                     $query = "SELECT userID, comment, rating FROM comment WHERE restaurantID = '$restID'"; 
                     $result = $conn->query($query);
-                    $resultRow = $result->fetch_row();
                     
                     $restaurantRating = [ 
                         1 => "<img class=\"img-responsive img-border-left\" src=\"img/r1.png\">",
@@ -271,32 +270,57 @@
                         3 => "<img class=\"img-responsive img-border-left\" src=\"img/r3.png\">",
                         4 => "<img class=\"img-responsive img-border-left\" src=\"img/r4.png\">",
                         5 => "<img class=\"img-responsive img-border-left\" src=\"img/r5.png\">"];
-                    foreach($result as $thing){
-                        $rating = $thing["rating"];
-                        $userID = $thing["userID"];
-                        $comment = $thing["comment"];
-                        
-                        
-                        $query1 = "SELECT userName FROM users WHERE userID = '$userID'"; 
-                        $result1 = $conn->query($query1);
-                        $resultRow1 = $result1->fetch_row();
-                        $username = $resultRow1[0];
-                        
-                        
-                        
-                        
-                        print "<div class = \"container\"><center>";
-                        print "<p><b>Username:</b> " . $username . "<br>";
-                        print "<b>Rating:</b> " . $restaurantRating[$rating];
-                        print "<b>Comment:</b> " . $comment . "</p>";
-                        print "<br>";
-                        print "</div><center/>";
-                        
-                        
-                        
-                        
-                        
+                    
+                    if ($result->num_rows > 0) {
+                                while ($resultRow = $result->fetch_assoc())
+                                {
+                                    $rating = $resultRow["rating"];
+                                    $userID = $resultRow["userID"];
+                                    $comment = $resultRow["comment"];  
+                                    
+                                    $query1 = "SELECT userName FROM users WHERE userID = '$userID'"; 
+                                    $result1 = $conn->query($query1);
+                                    $resultRow1 = $result1->fetch_row();
+                                    $username = $resultRow1[0];
+                                    
+                                    print "<div class = \"container\"><center>";
+                                    print "<p><b>Username:</b> " . $username . "<br>";
+                                    print "<b>Rating:</b> " . $restaurantRating[$rating];
+                                    print "<b>Comment:</b> " . $comment . "</p>";
+                                    print "<br>";
+                                    print "</div><center/>";
+                                }
                     }
+//                    $resultRow = $result->fetch_row();
+                    
+                    
+                    
+//                    foreach($result as $thing){
+//                        $rating = $thing["rating"];
+//                        $userID = $thing["userID"];
+//                        $comment = $thing["comment"];
+//                        
+//                        
+//                        $query1 = "SELECT userName FROM users WHERE userID = '$userID'"; 
+//                        $result1 = $conn->query($query1);
+//                        $resultRow1 = $result1->fetch_row();
+//                        $username = $resultRow1[0];
+//                        
+//                        
+//                        
+//                        
+//                        print "<div class = \"container\"><center>";
+//                        print "<p><b>Username:</b> " . $username . "<br>";
+//                        print "<b>Rating:</b> " . $restaurantRating[$rating];
+//                        print "<b>Comment:</b> " . $comment . "</p>";
+//                        print "<br>";
+//                        print "</div><center/>";
+//                        }
+                        
+                        
+                        
+                        
+                    
                     
         
                     
