@@ -176,59 +176,7 @@ session_start();
             </div>
         </div>
 
-        <div class="row">
-            <div class="box">
-                <hr class="visible-xs">
-                    <div class="col-md-4">
-                        <h2>Review 1</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                        <?php
 
-                        $tbl_name = "Restaurant";
-                        $number = 1;
-                        $sql = "SELECT iconimage FROM $tbl_name WHERE  id='$number'";
-
-                        $result = $conn->query($sql);
-                     
-                        if ($result->num_rows === 1)
-                        {
-                           
-                           while ($row = $result->fetch_assoc())
-                            {
-
-                                //$icomImage = $row["iconimage"];
-                                // <img class="img-responsive img-full" src="img/slide-1.jpg" alt="">
-                                // <img src="img2/sushi2.jpg" height="140" width="180" >
-                                //  print "<img src=\"img2/sushi2.jpg\" height=\"140\" width=\"180\" >";
-                                echo "<img src=\"img/{$row['iconimage']}\" height=\"250\" width=\"250\">";
-
-                            }   
-                            
-                        }
-
-
-                        ?>
-                      <!--   <a class="btn btn-default" href="#">More Info</a> --> 
-                        <!-- <img src="img/portfolio/tech.jpg" height="140" width="180" > --> 
-                    </div>
-
-                <!-- /.col-md-4 
-                    <div class="col-md-4">
-                        <h2>Review 2</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                        <a class="btn btn-default" href="#">More Info</a>
-                    </div>
-    
-                    <div class="col-md-4">
-                        <h2>Review 3</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe rem nisi accusamus error velit animi non ipsa placeat. Recusandae, suscipit, soluta quibusdam accusamus a veniam quaerat eveniet eligendi dolor consectetur.</p>
-                        <a class="btn btn-default" href="#">More Info</a>
-                    </div>
-             /.col-md-4 -->
-               
-                </hr>
-            </div>
-        </div>
 
         
         <div class="row">

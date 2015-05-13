@@ -276,7 +276,7 @@
                  
                     $query = "SELECT userID, comment, rating FROM comment WHERE restaurantID = $restID"; 
                     $result = $conn->query($query);
-                    
+                    $username = "";
                     if ($result->num_rows > 0) {
                                 while ($resultRow = $result->fetch_assoc())
                                 {
@@ -284,12 +284,12 @@
                                     $userID = $resultRow["userID"];
                                     $comment = $resultRow["comment"];  
                                     
-                                    $query1 = "SELECT userName FROM users WHERE userID = '$userID'"; 
+                                    $query1 = "SELECT userName FROM users WHERE userID = $userID"; 
                                     $result1 = $conn->query($query1);
-                                    
+                                    echo $userID;
                                     if ($result1->num_rows > 0) {
                                         while ($resultRow1 = $result1->fetch_assoc()){
-                                            $username = $resultRow1[0];
+                                            $username = $resultRow1["userName"];
                                         }
                                     } //asasas
                                     
